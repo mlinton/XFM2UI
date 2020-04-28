@@ -22,6 +22,9 @@ To be completed...
 ## Contributing
 Pull requests are always welcome and encouraged.  I am not an experienced software developer and new to the Arduino platform so I'm learning through this project.
 
+### Collaboration
+There is a slack channel created for active discussion and development for the software.  https://join.slack.com/t/xfm2/shared_invite/zt-dmrs50h3-34WvYiWgPBWruNXSXLYgBg
+
 ### List of Priorities
 - Implementation of the UART bi-directional data communication between the XFM2UI and XMF2
 - Implementation of basic parameter changes
