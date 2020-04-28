@@ -7,6 +7,8 @@ You will likely need to have built one of the XFM2 synths prior to taking intere
 
 18 digital pins available for the connection of mapped analog or digital controls for additional direct control.
 
+![Messy wire prototype](https://i.imgur.com/HUyAj72.jpg)
+
 ### Build of Materials
 The current XFM2UI hardware consists of:
 - PJRC Teensy 4.0 (however almost any arduino compatible board will work)
