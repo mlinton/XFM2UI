@@ -18,7 +18,15 @@ The current XFM2UI hardware consists of:
 
 ### Hardware Build Instructions
 
-To be completed...
+- Solder header pins to connect Teensy to breadboard
+- Connect middle encoder pin to ground
+- Connect two other encoder pins to digital pins 3 and 4
+- Connect encoder button pin to ground
+- Connect other encoder button pin to digial pin 5
+- Connect SSD1306 VCC to 5V VIN
+- Connect SSD1306 GND to ground
+- Connect SSD1306 SCL to pin 19
+- Connect SSD1306 SDA to pin 18
 
 ## Software
 The basis of the interface is menu driven concept to permit the modification of the parameters within the XFM2 code.  These parameters are numbered and named and each refers to a value that will change the personality of the synthesizer in real-time.
