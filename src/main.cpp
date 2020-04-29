@@ -1,7 +1,6 @@
-// XFM Menusystem
+// XFM2 UI v0.1
 // Based on Teensy 4.0 with an Adafruit SSD1306 and a Clickable rotary encoder
-// Github:
-// TODO:
+// Github:  https://github.com/marklinton/XFM2UI
 
 #include <Arduino.h>
 #include <menu.h>
@@ -12,8 +11,7 @@
 #include <menuIO/serialOut.h>
 #include <menuIO/serialIn.h>
 #include <Wire.h>
-
-// TODO: Figure out how to best #include "XFM2_params.h"
+#include "XFM2_params.h"
 
 using namespace Menu;
 
@@ -24,11 +22,9 @@ using namespace Menu;
   #define encB    4
   #define encBtn  5
 
-  // TODO: define UART pins on the XFM2
-
   // SSD1306 SCL and SDA
-  #define sdl     18
-  #define sda     19
+  #define sdl     6
+  #define sda     7
 
   //#define fontName u8g2_font_7x13_mf
   #define fontName u8g2_font_6x10_mf
@@ -39,8 +35,10 @@ using namespace Menu;
   #define U8_Width 128
   #define U8_Height 64
   #define USE_HWI2C
-  U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, sdl, sda);
+  U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
+// define startup XFM2 Paramters
+int AM_Range = 1;
 
 // define menu colors
 const colorDef<uint8_t> colors[6] MEMMODE={
@@ -53,6 +51,10 @@ const colorDef<uint8_t> colors[6] MEMMODE={
 };
 
 
+MENU(AMsubMenu,"Amplitude Modulation",doNothing,noEvent,noStyle
+  ,FIELD(AM_Range,"AM Range","",1,24,1,1,doNothing,noEvent,noStyle)
+  ,EXIT("<Back")
+);
 MENU(GSsubMenu,"Global Settings",doNothing,noEvent,noStyle
   ,OP("Output Level",doNothing,noEvent)
   ,OP("Layer Mode",doNothing,noEvent)
@@ -100,36 +102,21 @@ MENU(MDsubMenu,"Modulators",doNothing,noEvent,noStyle
   ,EXIT("<Back")
 );
 MENU(EFsubMenu,"Effects",doNothing,noEvent,noStyle
-//,SUBMENU(BitCrusher)
-//  ,FIELD(PRM_BITCRUSHER_DEPTH,"Bitcrusher Depth","",1,24,1,1,doNothing,noEvent,noStyle)
+  ,OP("BitCrusher",doNothing,noEvent)
   ,OP("Decimator",doNothing,noEvent)
   ,OP("Filter",doNothing,noEvent)
   ,OP("Chorus - Flanger",doNothing,noEvent)
   ,OP("Phaser",doNothing,noEvent)
-  ,OP("Amplitude Modulation",doNothing,noEvent)
+  ,SUBMENU(AMsubMenu)
   ,OP("Delay",doNothing,noEvent)
   ,OP("Effects Routing",doNothing,noEvent)
   ,OP("Global Reverb",doNothing,noEvent)
   ,EXIT("<Back")
 );
-//MENU(BitCrusher,"Bitcrusher",doNothing,noEvent,noStyle
-//  ,FIELD(Param380,"Bit Depth Reduction","#",1,24,1,doNothing,noEvent,noStyle)
-//  ,EXIT("<Back")
-//);
 
-uint16_t hrs=0;
-uint16_t mins=0;
-
-//define a pad style menu (single line menu)
-//here with a set of fields to enter a date in YYYY/MM/DD format
-altMENU(menu,timeMenu,"Time",doNothing,noEvent,noStyle,(systemStyles)(_asPad|Menu::_menuData|Menu::_canNav|_parentDraw)
-  ,FIELD(hrs,"",":",0,11,1,0,doNothing,noEvent,noStyle)
-  ,FIELD(mins,"","",0,59,10,1,doNothing,noEvent,wrapStyle)
-);
-
-char* constMEM hexDigit MEMMODE="0123456789ABCDEF";
-char* constMEM hexNr[] MEMMODE={"0","x",hexDigit,hexDigit};
-char buf1[]="0x11";
+// char* constMEM hexDigit MEMMODE="0123456789ABCDEF";
+// char* constMEM hexNr[] MEMMODE={"0","x",hexDigit,hexDigit};
+// char buf1[]="0x11";
 
 MENU(mainMenu,"XFM2 UI V0.1",doNothing,noEvent,noStyle
   ,SUBMENU(GSsubMenu)
@@ -147,9 +134,8 @@ encoderIn<encA,encB> encoder;//simple quad encoder driver
 encoderInStream<encA,encB> encStream(encoder,4);// simple quad encoder fake Stream
 
 //a keyboard with only one key as the encoder button
-keyMap encBtn_map[]={{-encBtn,defaultNavCodes[enterCmd].ch}};//negative pin numbers use internal pull-up, this is on when low
+keyMap encBtn_map[]={{-encBtn,defaultNavCodes[enterCmd].ch}}; //negative pin numbers use internal pull-up, this is on when low
 keyIn<1> encButton(encBtn_map);//1 is the number of keys
-
 menuIn* inputsList[]={&encButton};
 // chainStream<2> in(inputsList);//1 is the number of inputs
 
@@ -191,31 +177,90 @@ result idle(menuOut& o,idleEvent e) {
   }
   return proceed;
 }
+//XFM2 paramter setting - From Rene's code
+
+void set_unit( int unit ) {
+    // Default to unit 1
+    Serial1.write( unit == 2 ? '2' : '1' );
+}
+
+void set_parameter( int param, int value ) {
+    Serial1.write( 's' ); // 's' = Set Parameter
+
+    if( param > 255 ) {
+        // Parameters above 255 have a two-byte format: b1 = 255, b2 = x-256
+        Serial1.write( 255 );
+        Serial1.write( param - 256  );
+        Serial1.write( value );
+    }
+    else {
+        Serial1.write( param );
+        Serial1.write( value );
+    }
+}
+
+// two serial port setup
+// serial - the primary serial port for the output of the menu
+// serial1 - the output for the UART comms with the XFM2
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(500000);
+  Serial1.begin(500000);
+  pinMode( LED_BUILTIN, OUTPUT );
   while(!Serial);
-  Serial.println("XFM2 UI Test");Serial.flush();
+  Serial.println("XFM2 UI V1.0");Serial.flush();
   encButton.begin();
   encoder.begin();
   Wire.begin();
   u8g2.begin();
   u8g2.setFont(fontName);
-  // u8g2.setBitmapMode(0);
 
-  // disable second option
-  // mainMenu[1].enabled=disabledStatus;
-  nav.idleTask=idle;//point a function to be used when menu is suspended
-  Serial.println("setup done.");Serial.flush();
+  nav.idleTask=idle; //point a function to be used when menu is suspended
+  Serial.println("Setup complete.");Serial.flush();
 }
 
 void loop() {
+
+  // Statics
+    static int in0;
+    static int v0;
+    static int avg0;
+    static int last0 = 2000;
+
+    // Read value from menu variable
+    v0 = AM_Range;
+
+    // Smooth value cheaper than a cap
+    avg0 += ( v0 - avg0 ) / 2;
+
+    // 10-bit -> 8-bit
+    int a0 = avg0 >> 2; 
+    
+    // New value? send it to XFM2
+    if( a0 != last0 ) {
+        // Set this message to be sent to XFM2 unit 1 (change to '2' to send to the second unit)
+        set_unit( 1 );
+        
+        // Send parameter AM DEPTH (#332) with value 255
+        // NOTE: This first message is just needed to ensure the next parameter effect is heard
+        set_parameter( PRM_AM_DEPTH, 255 );
+
+        // Send parameter AM SPEED RANGE (#331) with the read value
+        set_parameter( PRM_AM_RANGE, a0 );
+        
+        // Flash some light as to assert dominance
+        digitalWrite( LED_BUILTIN, HIGH );
+        delay( 20 );
+        digitalWrite( LED_BUILTIN, LOW );
+        delay( 20 );
+    }
+    last0 = a0;
+
   nav.doInput();
-  // digitalWrite(LEDPIN, ledCtrl);
-  if (nav.changed(0)) {//only draw if menu changed for gfx device
+
+  if (nav.changed(0)) {  //only draw if menu changed for gfx device
     //change checking leaves more time for other tasks
     u8g2.firstPage();
     do nav.doOutput(); while(u8g2.nextPage());
   }
-  delay(10);//simulate other tasks delay
 }
