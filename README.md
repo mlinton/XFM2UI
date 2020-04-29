@@ -2,6 +2,8 @@
 XFM2UI is an Arduino user interface for XFM2 based on Teensy 4.0 microcontroller.
 XFM2 is a project by Rene that implements a very full featured 2-voice FM synthesizer on top of the CMOD A7 FPGA.  You can find his project here https://www.futur3soundz.com/
 
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Impedimenta/Suitcase?sort=semver)](https://github.com/mlinton/XFM2UI/releases) ![Twitter Follow](https://img.shields.io/twitter/follow/marklinton)
+
 ## Hardware
 You will likely need to have built one of the XFM2 synths prior to taking interest, so please refer to Rene's blog above for instructions on aquiring the synth.
 
