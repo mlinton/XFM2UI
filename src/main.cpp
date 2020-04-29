@@ -22,10 +22,6 @@ using namespace Menu;
   #define encB    4
   #define encBtn  5
 
-  // SSD1306 SCL and SDA
-  #define sdl     6
-  #define sda     7
-
   //#define fontName u8g2_font_7x13_mf
   #define fontName u8g2_font_6x10_mf
   #define fontX 5
@@ -38,7 +34,9 @@ using namespace Menu;
   U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
 // define startup XFM2 Paramters
-int AM_Range = 1;
+int AM_Depth = 1;
+int AM_Speed = 1;
+int AM_Range = 0;
 
 // define menu colors
 const colorDef<uint8_t> colors[6] MEMMODE={
@@ -50,9 +48,10 @@ const colorDef<uint8_t> colors[6] MEMMODE={
   {{1,1},{1,0,0}},//titleColor
 };
 
-
 MENU(AMsubMenu,"Amplitude Modulation",doNothing,noEvent,noStyle
-  ,FIELD(AM_Range,"AM Range","",1,24,1,1,doNothing,noEvent,noStyle)
+//  ,FIELD(AM_DEPTH,"AM Depth","",1,24,1,1,doNothing,noEvent,noStyle)
+//  ,FIELD(AM_Speed,"AM Speed","",1,24,1,1,doNothing,noEvent,noStyle)
+  ,FIELD(AM_Range,"AM Range","",0,24,1,1,doNothing,noEvent,noStyle)
   ,EXIT("<Back")
 );
 MENU(GSsubMenu,"Global Settings",doNothing,noEvent,noStyle
@@ -113,10 +112,6 @@ MENU(EFsubMenu,"Effects",doNothing,noEvent,noStyle
   ,OP("Global Reverb",doNothing,noEvent)
   ,EXIT("<Back")
 );
-
-// char* constMEM hexDigit MEMMODE="0123456789ABCDEF";
-// char* constMEM hexNr[] MEMMODE={"0","x",hexDigit,hexDigit};
-// char buf1[]="0x11";
 
 MENU(mainMenu,"XFM2 UI V0.1",doNothing,noEvent,noStyle
   ,SUBMENU(GSsubMenu)
@@ -222,6 +217,7 @@ void setup() {
 void loop() {
 
   // Statics
+  // This section needs to be updated with code to change multiple parameters based on the selected values
     static int in0;
     static int v0;
     static int avg0;
