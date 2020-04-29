@@ -1,0 +1,4 @@
+April 29th, 2020
+- Got UART XFM2 communications working using the second serial port
+- Got XFM2 parameters integrated
+- Tested working communication with the AM_Range parameter (realized that I was listening to the wrong unit for changes, duh)
