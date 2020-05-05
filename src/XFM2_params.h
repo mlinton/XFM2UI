@@ -6,20 +6,30 @@
 //      create_menu(param)
 //  Need some way of defining a nested menu structure or references to the ordering of the menu items
 
-#define PRM_ALGO0                   001
-#define PRM_ALGO1                   002
-#define PRM_ALGO2                   003
-#define PRM_ALGO3                   004
-#define PRM_ALGO4                   005
-#define PRM_ALGO5                   006
+// struct XFM_params {
+//     string name;
+//     int param_num;
+//     int param_value;
+// }
+
+// Define other values (globals)
+// #define MIDI_Channel_0              * 10 // 0 (omni) or 1 - 16
+// #define MIDI_Channel_1              * 11 // 0 (omni) or 1 - 16
+// #define LAYER_MODE                  * 12 // 0 Off or 1 On
+#define PRM_ALGO0                   001 // binary based on LSB
+#define PRM_ALGO1                   002 // binary based on LSB
+#define PRM_ALGO2                   003 // binary based on LSB
+#define PRM_ALGO3                   004 // binary based on LSB
+#define PRM_ALGO4                   005 // binary based on LSB
+#define PRM_ALGO5                   006 // binary based on LSB
 #define PRM_FEEDBACK0               007
 #define PRM_FEEDBACK1               008
 #define PRM_FEEDBACK2               009
 #define PRM_FEEDBACK3               010
 #define PRM_FEEDBACK4               011
 #define PRM_FEEDBACK5               012
-#define PRM_OSC_SYNC                013
-#define PRM_OSC_MODE                014
+#define PRM_OSC_SYNC                013 // bitwise parameter to set each operator to free-run (0) or note-on (1)
+#define PRM_OSC_MODE                014 // binary based on LSB
 #define PRM_RATIO0                  015
 #define PRM_RATIO1                  016
 #define PRM_RATIO2                  017
@@ -68,18 +78,18 @@
 #define PRM_KEY_RDEPTH3             060
 #define PRM_KEY_RDEPTH4             061
 #define PRM_KEY_RDEPTH5             062
-#define PRM_KEY_LCURVE0             063
-#define PRM_KEY_LCURVE1             064
-#define PRM_KEY_LCURVE2             065
-#define PRM_KEY_LCURVE3             066
-#define PRM_KEY_LCURVE4             067
-#define PRM_KEY_LCURVE5             068
-#define PRM_KEY_RCURVE0             069
-#define PRM_KEY_RCURVE1             070
-#define PRM_KEY_RCURVE2             071
-#define PRM_KEY_RCURVE3             072
-#define PRM_KEY_RCURVE4             073
-#define PRM_KEY_RCURVE5             074
+#define PRM_KEY_LCURVE0             063 // 0 - 3
+#define PRM_KEY_LCURVE1             064 // 0 - 3
+#define PRM_KEY_LCURVE2             065 // 0 - 3
+#define PRM_KEY_LCURVE3             066 // 0 - 3
+#define PRM_KEY_LCURVE4             067 // 0 - 3
+#define PRM_KEY_LCURVE5             068 // 0 - 3
+#define PRM_KEY_RCURVE0             069 // 0 - 3
+#define PRM_KEY_RCURVE1             070 // 0 - 3
+#define PRM_KEY_RCURVE2             071 // 0 - 3
+#define PRM_KEY_RCURVE3             072 // 0 - 3
+#define PRM_KEY_RCURVE4             073 // 0 - 3
+#define PRM_KEY_RCURVE5             074 // 0 - 3
 #define PRM_L1_0                    075
 #define PRM_L1_1                    076
 #define PRM_L1_2                    077
@@ -148,8 +158,8 @@
 #define PRM_LFO_PITCH_DEPTH         149
 #define PRM_LFO_AMP_DEPTH           150
 #define PRM_LFO_SPEED               151
-#define PRM_LFO_SYNC                152
-#define PRM_LFO_WAVE                153
+#define PRM_LFO_SYNC                152 // 0 - 3 (single, free running), single, Key sync, Multi, Free running, Multi, Key sync
+#define PRM_LFO_WAVE                153 // 0 - 5 (Triangle, Square, Saw up, Saw Down, Sine, Random)
 #define PRM_LFO_FADE                154
 #define PRM_LFO_PITCH_DEPTH_WHEEL   155
 #define PRM_LFO_AMP_DEPTH_WHEEL     156
@@ -163,7 +173,7 @@
 #define PRM_LFO_AMS5                164
 #define PRM_BEND_RANGE_UP           172
 #define PRM_BEND_RANGE_DN           173
-#define PRM_TRANSPOSE               174
+#define PRM_TRANSPOSE               174 // center value is 24 (no transpose)
 #define PRM_VOLUME                  180
 #define PRM_L0_0                    181
 #define PRM_L0_1                    182
@@ -212,19 +222,19 @@
 #define PRM_LFO_PMS3                225
 #define PRM_LFO_PMS4                226
 #define PRM_LFO_PMS5                227
-#define PRM_LEGATO                  228
-#define PRM_PORTA_MODE              229
+#define PRM_LEGATO                  228 // 0 - 1 (Polyphonic 0 or Monophonic Legato (1))
+#define PRM_PORTA_MODE              229 // 0 - 2 (0 off, 1 always, 2 fingered)
 #define PRM_PORTA_TIME              230
-#define PRM_WAVEFORM0               236
-#define PRM_WAVEFORM1               237
-#define PRM_WAVEFORM2               238
-#define PRM_WAVEFORM3               239
-#define PRM_WAVEFORM4               240
-#define PRM_WAVEFORM5               241
+#define PRM_WAVEFORM0               236 // 0 - 7
+#define PRM_WAVEFORM1               237 // 0 - 7
+#define PRM_WAVEFORM2               238 // 0 - 7
+#define PRM_WAVEFORM3               239 // 0 - 7
+#define PRM_WAVEFORM4               240 // 0 - 7
+#define PRM_WAVEFORM5               241 // 0 - 7
 #define PRM_VELO_OFFSET             242
 #define PRM_VELO_CURVE              243
-#define PRM_EG_LOOP                 244
-#define PRM_EG_LOOP_SEG             245
+#define PRM_EG_LOOP                 244 // bitwise
+#define PRM_EG_LOOP_SEG             245 // bitwise
 #define PRM_EG_RESTART              246
 #define PRM_TUNING                  251
 #define PRM_LEVEL0_L                256
@@ -239,48 +249,48 @@
 #define PRM_LEVEL4_R                265
 #define PRM_LEVEL5_L                266
 #define PRM_LEVEL5_R                267
-#define PRM_WAVEFORM2_0             268
-#define PRM_WAVEFORM2_1             269
-#define PRM_WAVEFORM2_2             270
-#define PRM_WAVEFORM2_3             271
-#define PRM_WAVEFORM2_4             272
-#define PRM_WAVEFORM2_5             273
-#define PRM_WMODE0                  274
-#define PRM_WMODE1                  275
-#define PRM_WMODE2                  276
-#define PRM_WMODE3                  277
-#define PRM_WMODE4                  278
-#define PRM_WMODE5                  279
+#define PRM_WAVEFORM2_0             268 // 0 - 7
+#define PRM_WAVEFORM2_1             269 // 0 - 7
+#define PRM_WAVEFORM2_2             270 // 0 - 7
+#define PRM_WAVEFORM2_3             271 // 0 - 7
+#define PRM_WAVEFORM2_4             272 // 0 - 7
+#define PRM_WAVEFORM2_5             273 // 0 - 7
+#define PRM_WMODE0                  274 // 0 - 1
+#define PRM_WMODE1                  275 // 0 - 1
+#define PRM_WMODE2                  276 // 0 - 1
+#define PRM_WMODE3                  277 // 0 - 1
+#define PRM_WMODE4                  278 // 0 - 1
+#define PRM_WMODE5                  279 // 0 - 1
 #define PRM_WRATIO0                 280
 #define PRM_WRATIO1                 281
 #define PRM_WRATIO2                 282
 #define PRM_WRATIO3                 283
 #define PRM_WRATIO4                 284
 #define PRM_WRATIO5                 285
-#define PRM_OSC_PHASE0              286
-#define PRM_OSC_PHASE1              287
-#define PRM_OSC_PHASE2              288
-#define PRM_OSC_PHASE3              289
-#define PRM_OSC_PHASE4              290
-#define PRM_OSC_PHASE5              291
+#define PRM_OSC_PHASE0              286 // 0 - 3 (0 / 90 / 180 / 270)
+#define PRM_OSC_PHASE1              287 // 0 - 3 (0 / 90 / 180 / 270)
+#define PRM_OSC_PHASE2              288 // 0 - 3 (0 / 90 / 180 / 270)
+#define PRM_OSC_PHASE3              289 // 0 - 3 (0 / 90 / 180 / 270)
+#define PRM_OSC_PHASE4              290 // 0 - 3 (0 / 90 / 180 / 270)
+#define PRM_OSC_PHASE5              291 // 0 - 3 (0 / 90 / 180 / 270)
 #define PRM_SDLY_DRY                300
 #define PRM_SDLY_WET                301
-#define PRM_SDLY_MODE               302
+#define PRM_SDLY_MODE               302 // 0 - 3 Stereo, Cross, Bounce
 #define PRM_SDLY_TIME               303
 #define PRM_SDLY_FEEDBACK           304
 #define PRM_SDLY_FEEDLO             305
 #define PRM_SDLY_FEEDHI             306
-#define PRM_SDLY_TEMPO              307
+#define PRM_SDLY_TEMPO              307 // 0 midi, 50-255
 #define PRM_SDLY_NUM                308
 #define PRM_SDLY_DEN                309
 #define PRM_PHASER_DRY              310
 #define PRM_PHASER_WET              311
-#define PRM_PHASER_MODE             312
+#define PRM_PHASER_MODE             312 // 0 - 2 (Mono, Stereo, Cross)
 #define PRM_PHASER_DEPTH            313
 #define PRM_PHASER_SPEED            314
 #define PRM_PHASER_FEEDBACK         315
 #define PRM_PHASER_OFFSET           316
-#define PRM_PHASER_STAGES           317
+#define PRM_PHASER_STAGES           317 // 4-12?
 #define PRM_PHASER_PHASE            318
 #define PRM_PHASER_WAVEFORM         319
 #define PRM_FILTER_LO               320
@@ -297,22 +307,22 @@
 #define PRM_WAVESHAPER_SHAPE        354
 #define PRM_CHORUS_DRY              360
 #define PRM_CHORUS_WET              361
-#define PRM_CHORUS_MODE             362
+#define PRM_CHORUS_MODE             362 // 0 - 3 (Chorus long, Chorus Short, Flanger Long, Flanger Short)
 #define PRM_CHORUS_SPEED            363
 #define PRM_CHORUS_DEPTH            364
 #define PRM_CHORUS_FEEDBACK         365
 #define PRM_CHORUS_PHASE            366
 #define PRM_DECIMATOR_DEPTH         370
-#define PRM_BITCRUSHER_DEPTH        380
+#define PRM_BITCRUSHER_DEPTH        380 // 0 - 24 (bits to reduce)
 #define PRM_REVERB_DRY              390
 #define PRM_REVERB_WET              391
-#define PRM_REVERB_MODE             392
+#define PRM_REVERB_MODE             392 // 0 - 1 Plate or Hall
 #define PRM_REVERB_DECAY            393
 #define PRM_REVERB_DAMP             394
 #define PRM_REVERB_D0               395
 #define PRM_REVERB_D1               396
 #define PRM_REVERB_D2               397
-#define PRM_FX_ROUTING              410
+#define PRM_FX_ROUTING              410 // 0 or 1
 #define PRM_OUTPUT_LEVEL            411
 #define PRM_CONTROL_1H              420
 #define PRM_CONTROL_1L              421
@@ -322,8 +332,8 @@
 #define PRM_CONTROL_3L              425
 #define PRM_CONTROL_4H              426
 #define PRM_CONTROL_4L              427
-#define PRM_ARP_MODE                450
-#define PRM_ARP_TEMPO               451
+#define PRM_ARP_MODE                450 // 0 - 5 (Off, Up, Down, Up/Down, As Played, Random)
+#define PRM_ARP_TEMPO               451 // 0 is midi sync, 50-255
 #define PRM_ARP_TEMPO_FINE          452
 #define PRM_ARP_DIVISION            453
 #define PRM_ARP_OCTAVES             454
