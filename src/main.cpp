@@ -34,8 +34,8 @@ using namespace Menu;
   U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
 // define startup XFM2 Paramters
-int AM_Depth = 1;
-int AM_Speed = 1;
+int AM_Depth = 0;
+int AM_Speed = 0;
 int AM_Range = 0;
 
 // define menu colors
@@ -49,9 +49,9 @@ const colorDef<uint8_t> colors[6] MEMMODE={
 };
 
 MENU(AMsubMenu,"Amplitude Modulation",doNothing,noEvent,noStyle
-//  ,FIELD(AM_DEPTH,"AM Depth","",1,24,1,1,doNothing,noEvent,noStyle)
-//  ,FIELD(AM_Speed,"AM Speed","",1,24,1,1,doNothing,noEvent,noStyle)
-  ,FIELD(AM_Range,"AM Range","",0,24,1,1,doNothing,noEvent,noStyle)
+  ,FIELD(AM_Depth,"AM Depth","",1,255,1,1,doNothing,noEvent,noStyle)
+  ,FIELD(AM_Speed,"AM Speed","",1,255,1,1,doNothing,noEvent,noStyle)
+  ,FIELD(AM_Range,"AM Range","",0,255,1,1,doNothing,noEvent,noStyle)
   ,EXIT("<Back")
 );
 MENU(GSsubMenu,"Global Settings",doNothing,noEvent,noStyle
@@ -194,6 +194,21 @@ void set_parameter( int param, int value ) {
     }
 }
 
+void get_parameter( int param, int value ) {
+    Serial1.write( 'g' ); // 'g' = Get Parameter
+
+    if( param > 255 ) {
+        // Parameters above 255 have a two-byte format: b1 = 255, b2 = x-256
+        Serial1.write( 255 );
+        Serial1.write( param - 256  );
+        Serial1.write( value );
+    }
+    else {
+        Serial1.write( param );
+        Serial1.write( value );
+    }
+}
+
 // two serial port setup
 // serial - the primary serial port for the output of the menu
 // serial1 - the output for the UART comms with the XFM2
@@ -220,37 +235,51 @@ void loop() {
   // This section needs to be updated with code to change multiple parameters based on the selected values
     static int in0;
     static int v0;
+    static int v1;
+    static int v2;
     static int avg0;
+    static int avg1;
+    static int avg2;
     static int last0 = 2000;
+    static int last1 = 2000;
+    static int last2 = 2000;
 
     // Read value from menu variable
     v0 = AM_Range;
+    v1 = AM_Speed;
+    v2 = AM_Depth;
 
     // Smooth value cheaper than a cap
     avg0 += ( v0 - avg0 ) / 2;
+    avg1 += ( v1 - avg1 ) / 2;
+    avg2 += ( v2 - avg2 ) / 2;
 
     // 10-bit -> 8-bit
     int a0 = avg0 >> 2; 
+    int a1 = avg1 >> 2; 
+    int a2 = avg2 >> 2; 
     
     // New value? send it to XFM2
-    if( a0 != last0 ) {
+    if(( a0 != last0 ) || ( a1 != last1) || (a2 != last2)) {
         // Set this message to be sent to XFM2 unit 1 (change to '2' to send to the second unit)
         set_unit( 1 );
         
         // Send parameter AM DEPTH (#332) with value 255
         // NOTE: This first message is just needed to ensure the next parameter effect is heard
-        set_parameter( PRM_AM_DEPTH, 255 );
+        set_parameter( PRM_AM_DEPTH, a2 );
+        set_parameter( PRM_AM_SPEED, a1 );
 
         // Send parameter AM SPEED RANGE (#331) with the read value
         set_parameter( PRM_AM_RANGE, a0 );
-        
+        Serial.println(a2);
         // Flash some light as to assert dominance
         digitalWrite( LED_BUILTIN, HIGH );
-        delay( 20 );
         digitalWrite( LED_BUILTIN, LOW );
-        delay( 20 );
+
     }
     last0 = a0;
+    last1 = a1;
+    last2 = a2;
 
   nav.doInput();
 

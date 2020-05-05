@@ -1,3 +1,11 @@
+//  This file should really contain the definitions for each parameter
+//  for each param
+//      set param(name, description, range, value)
+//      e.g. set param(PRM_ALGO0,"Algorythm 0", 0-255, 0)
+//  This will allow for recall and setting of the paramters and display within a menu system
+//      create_menu(param)
+//  Need some way of defining a nested menu structure or references to the ordering of the menu items
+
 #define PRM_ALGO0                   001
 #define PRM_ALGO1                   002
 #define PRM_ALGO2                   003
