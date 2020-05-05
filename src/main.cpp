@@ -6,6 +6,8 @@
 #include <menu.h>
 #include <menuIO/u8g2Out.h>
 #include <menuIO/encoderIn.h>
+#include "ClickEncoder.h"
+#include <menuIO/clickEncoderIn.h>
 #include <menuIO/keyIn.h>
 #include <menuIO/chainStream.h>
 #include <menuIO/serialOut.h>
