@@ -1,4 +1,4 @@
-// XFM2 UI v0.1
+// XFM2UI v0.1
 // Based on Teensy 4.0 with an Adafruit SSD1306 and a Clickable rotary encoder
 // Github:  https://github.com/marklinton/XFM2UI
 
@@ -597,7 +597,7 @@ void setup() {
   Serial1.begin(500000);
   pinMode( LED_BUILTIN, OUTPUT );
   while(!Serial);
-  Serial.println("XFM2 UI V1.0");Serial.flush();
+  Serial.println("XFM2UI V0.1");Serial.flush();
   encButton.begin();
   encoder.begin();
   Wire.begin();
