@@ -1,117 +1,104 @@
-//  This file should really contain the definitions for each parameter
-//  for each param
-//      set param(name, description, range, value)
-//      e.g. set param(PRM_ALGO0,"Algorythm 0", 0-255, 0)
-//  This will allow for recall and setting of the paramters and display within a menu system
-//      create_menu(param)
-//  Need some way of defining a nested menu structure or references to the ordering of the menu items
-
-// struct XFM_params {
-//     string name;
-//     int param_num;
-//     int param_value;
-// }
-
+// This file should really contain the definitions for each parameter
 // Define other values (globals)
 // #define MIDI_Channel_0              * 10 // 0 (omni) or 1 - 16
 // #define MIDI_Channel_1              * 11 // 0 (omni) or 1 - 16
 // #define LAYER_MODE                  * 12 // 0 Off or 1 On
-#define PRM_ALGO0                   001 // binary based on LSB
-#define PRM_ALGO1                   002 // binary based on LSB
-#define PRM_ALGO2                   003 // binary based on LSB
-#define PRM_ALGO3                   004 // binary based on LSB
-#define PRM_ALGO4                   005 // binary based on LSB
-#define PRM_ALGO5                   006 // binary based on LSB
-#define PRM_FEEDBACK0               007
-#define PRM_FEEDBACK1               008
-#define PRM_FEEDBACK2               009
-#define PRM_FEEDBACK3               010
-#define PRM_FEEDBACK4               011
-#define PRM_FEEDBACK5               012
-#define PRM_OSC_SYNC                013 // bitwise parameter to set each operator to free-run (0) or note-on (1)
-#define PRM_OSC_MODE                014 // binary based on LSB
-#define PRM_RATIO0                  015
-#define PRM_RATIO1                  016
-#define PRM_RATIO2                  017
-#define PRM_RATIO3                  018
-#define PRM_RATIO4                  019
-#define PRM_RATIO5                  020
-#define PRM_RATIO_FINE0             021
-#define PRM_RATIO_FINE1             022
-#define PRM_RATIO_FINE2             023
-#define PRM_RATIO_FINE3             024
-#define PRM_RATIO_FINE4             025
-#define PRM_RATIO_FINE5             026
-#define PRM_FINE0                   027
-#define PRM_FINE1                   028
-#define PRM_FINE2                   029
-#define PRM_FINE3                   030
-#define PRM_FINE4                   031
-#define PRM_FINE5                   032
-#define PRM_LEVEL0                  033
-#define PRM_LEVEL1                  034
-#define PRM_LEVEL2                  035
-#define PRM_LEVEL3                  036
-#define PRM_LEVEL4                  037
-#define PRM_LEVEL5                  038
-#define PRM_VEL_SENS0               039
-#define PRM_VEL_SENS1               040
-#define PRM_VEL_SENS2               041
-#define PRM_VEL_SENS3               042
-#define PRM_VEL_SENS4               043
-#define PRM_VEL_SENS5               044
-#define PRM_KEY_BP0                 045
-#define PRM_KEY_BP1                 046
-#define PRM_KEY_BP2                 047
-#define PRM_KEY_BP3                 048
-#define PRM_KEY_BP4                 049
-#define PRM_KEY_BP5                 050
-#define PRM_KEY_LDEPTH0             051
-#define PRM_KEY_LDEPTH1             052
-#define PRM_KEY_LDEPTH2             053
-#define PRM_KEY_LDEPTH3             054
-#define PRM_KEY_LDEPTH4             055
-#define PRM_KEY_LDEPTH5             056
-#define PRM_KEY_RDEPTH0             057
-#define PRM_KEY_RDEPTH1             058
-#define PRM_KEY_RDEPTH2             059
-#define PRM_KEY_RDEPTH3             060
-#define PRM_KEY_RDEPTH4             061
-#define PRM_KEY_RDEPTH5             062
-#define PRM_KEY_LCURVE0             063 // 0 - 3
-#define PRM_KEY_LCURVE1             064 // 0 - 3
-#define PRM_KEY_LCURVE2             065 // 0 - 3
-#define PRM_KEY_LCURVE3             066 // 0 - 3
-#define PRM_KEY_LCURVE4             067 // 0 - 3
-#define PRM_KEY_LCURVE5             068 // 0 - 3
-#define PRM_KEY_RCURVE0             069 // 0 - 3
-#define PRM_KEY_RCURVE1             070 // 0 - 3
-#define PRM_KEY_RCURVE2             071 // 0 - 3
-#define PRM_KEY_RCURVE3             072 // 0 - 3
-#define PRM_KEY_RCURVE4             073 // 0 - 3
-#define PRM_KEY_RCURVE5             074 // 0 - 3
-#define PRM_L1_0                    075
-#define PRM_L1_1                    076
-#define PRM_L1_2                    077
-#define PRM_L1_3                    078
-#define PRM_L1_4                    079
-#define PRM_L1_5                    080
-#define PRM_L2_0                    082
-#define PRM_L2_1                    083
-#define PRM_L2_2                    084
-#define PRM_L2_3                    085
-#define PRM_L2_4                    086
-#define PRM_L2_5                    087
-#define PRM_L3_0                    089
-#define PRM_L3_1                    090
-#define PRM_L3_2                    091
-#define PRM_L3_3                    092
-#define PRM_L3_4                    093
-#define PRM_L3_5                    094
-#define PRM_L4_0                    096
-#define PRM_L4_1                    097
-#define PRM_L4_2                    098
-#define PRM_L4_3                    099
+#define PRM_ALGO0                   1 // binary based on LSB
+#define PRM_ALGO1                   2 // binary based on LSB
+#define PRM_ALGO2                   3 // binary based on LSB
+#define PRM_ALGO3                   4 // binary based on LSB
+#define PRM_ALGO4                   5 // binary based on LSB
+#define PRM_ALGO5                   6 // binary based on LSB
+#define PRM_FEEDBACK0               7
+#define PRM_FEEDBACK1               8
+#define PRM_FEEDBACK2               9
+#define PRM_FEEDBACK3               10
+#define PRM_FEEDBACK4               11
+#define PRM_FEEDBACK5               12
+#define PRM_OSC_SYNC                13 // bitwise parameter to set each operator to free-run (0) or note-on (1)
+#define PRM_OSC_MODE                14 // binary based on LSB
+#define PRM_RATIO0                  15
+#define PRM_RATIO1                  16
+#define PRM_RATIO2                  17
+#define PRM_RATIO3                  18
+#define PRM_RATIO4                  19
+#define PRM_RATIO5                  20
+#define PRM_RATIO_FINE0             21
+#define PRM_RATIO_FINE1             22
+#define PRM_RATIO_FINE2             23
+#define PRM_RATIO_FINE3             24
+#define PRM_RATIO_FINE4             25
+#define PRM_RATIO_FINE5             26
+#define PRM_FINE0                   27
+#define PRM_FINE1                   28
+#define PRM_FINE2                   29
+#define PRM_FINE3                   30
+#define PRM_FINE4                   31
+#define PRM_FINE5                   32
+#define PRM_LEVEL0                  33
+#define PRM_LEVEL1                  34
+#define PRM_LEVEL2                  35
+#define PRM_LEVEL3                  36
+#define PRM_LEVEL4                  37
+#define PRM_LEVEL5                  38
+#define PRM_VEL_SENS0               39
+#define PRM_VEL_SENS1               40
+#define PRM_VEL_SENS2               41
+#define PRM_VEL_SENS3               42
+#define PRM_VEL_SENS4               43
+#define PRM_VEL_SENS5               44
+#define PRM_KEY_BP0                 45
+#define PRM_KEY_BP1                 46
+#define PRM_KEY_BP2                 47
+#define PRM_KEY_BP3                 48
+#define PRM_KEY_BP4                 49
+#define PRM_KEY_BP5                 50
+#define PRM_KEY_LDEPTH0             51
+#define PRM_KEY_LDEPTH1             52
+#define PRM_KEY_LDEPTH2             53
+#define PRM_KEY_LDEPTH3             54
+#define PRM_KEY_LDEPTH4             55
+#define PRM_KEY_LDEPTH5             56
+#define PRM_KEY_RDEPTH0             57
+#define PRM_KEY_RDEPTH1             58
+#define PRM_KEY_RDEPTH2             59
+#define PRM_KEY_RDEPTH3             60
+#define PRM_KEY_RDEPTH4             61
+#define PRM_KEY_RDEPTH5             62
+#define PRM_KEY_LCURVE0             63 // 0 - 3
+#define PRM_KEY_LCURVE1             64 // 0 - 3
+#define PRM_KEY_LCURVE2             65 // 0 - 3
+#define PRM_KEY_LCURVE3             66 // 0 - 3
+#define PRM_KEY_LCURVE4             67 // 0 - 3
+#define PRM_KEY_LCURVE5             68 // 0 - 3
+#define PRM_KEY_RCURVE0             69 // 0 - 3
+#define PRM_KEY_RCURVE1             70 // 0 - 3
+#define PRM_KEY_RCURVE2             71 // 0 - 3
+#define PRM_KEY_RCURVE3             72 // 0 - 3
+#define PRM_KEY_RCURVE4             73 // 0 - 3
+#define PRM_KEY_RCURVE5             74 // 0 - 3
+#define PRM_L1_0                    75
+#define PRM_L1_1                    76
+#define PRM_L1_2                    77
+#define PRM_L1_3                    78
+#define PRM_L1_4                    79
+#define PRM_L1_5                    80
+#define PRM_L2_0                    82
+#define PRM_L2_1                    83
+#define PRM_L2_2                    84
+#define PRM_L2_3                    85
+#define PRM_L2_4                    86
+#define PRM_L2_5                    87
+#define PRM_L3_0                    89
+#define PRM_L3_1                    90
+#define PRM_L3_2                    91
+#define PRM_L3_3                    92
+#define PRM_L3_4                    93
+#define PRM_L3_5                    94
+#define PRM_L4_0                    96
+#define PRM_L4_1                    97
+#define PRM_L4_2                    98
+#define PRM_L4_3                    99
 #define PRM_L4_4                    100
 #define PRM_L4_5                    101
 #define PRM_R1_0                    103
@@ -337,3 +324,327 @@
 #define PRM_ARP_TEMPO_FINE          452
 #define PRM_ARP_DIVISION            453
 #define PRM_ARP_OCTAVES             454
+
+// Define integers for all of the internal Paramters
+
+int ALGO0 = 0;
+int ALGO1 = 0;
+int ALGO2 = 0;
+int ALGO3 = 0;
+int ALGO4 = 0;
+int ALGO5 = 0;
+int FEEDBACK0 = 0;
+int FEEDBACK1 = 0;
+int FEEDBACK2 = 0;
+int FEEDBACK3 = 0;
+int FEEDBACK4 = 0;
+int FEEDBACK5 = 0;
+int OSC_SYNC = 0;
+int OSC_MODE = 0;
+int RATIO0 = 0;
+int RATIO1 = 0;
+int RATIO2 = 0;
+int RATIO3 = 0;
+int RATIO4 = 0;
+int RATIO5 = 0;
+int RATIO_FINE0 = 0;
+int RATIO_FINE1 = 0;
+int RATIO_FINE2 = 0;
+int RATIO_FINE3 = 0;
+int RATIO_FINE4 = 0;
+int RATIO_FINE5 = 0;
+int FINE0 = 0;
+int FINE1 = 0;
+int FINE2 = 0;
+int FINE3 = 0;
+int FINE4 = 0;
+int FINE5 = 0;
+int LEVEL0 = 0;
+int LEVEL1 = 0;
+int LEVEL2 = 0;
+int LEVEL3 = 0;
+int LEVEL4 = 0;
+int LEVEL5 = 0;
+int VEL_SENS0 = 0;
+int VEL_SENS1 = 0;
+int VEL_SENS2 = 0;
+int VEL_SENS3 = 0;
+int VEL_SENS4 = 0;
+int VEL_SENS5 = 0;
+int KEY_BP0 = 0;
+int KEY_BP1 = 0;
+int KEY_BP2 = 0;
+int KEY_BP3 = 0;
+int KEY_BP4 = 0;
+int KEY_BP5 = 0;
+int KEY_LDEPTH0 = 0;
+int KEY_LDEPTH1 = 0;
+int KEY_LDEPTH2 = 0;
+int KEY_LDEPTH3 = 0;
+int KEY_LDEPTH4 = 0;
+int KEY_LDEPTH5 = 0;
+int KEY_RDEPTH0 = 0;
+int KEY_RDEPTH1 = 0;
+int KEY_RDEPTH2 = 0;
+int KEY_RDEPTH3 = 0;
+int KEY_RDEPTH4 = 0;
+int KEY_RDEPTH5 = 0;
+int KEY_LCURVE0 = 0;
+int KEY_LCURVE1 = 0;
+int KEY_LCURVE2 = 0;
+int KEY_LCURVE3 = 0;
+int KEY_LCURVE4 = 0;
+int KEY_LCURVE5 = 0;
+int KEY_RCURVE0 = 0;
+int KEY_RCURVE1 = 0;
+int KEY_RCURVE2 = 0;
+int KEY_RCURVE3 = 0;
+int KEY_RCURVE4 = 0;
+int KEY_RCURVE5 = 0;
+int L1_0 = 0;
+int L1_1 = 0;
+int L1_2 = 0;
+int L1_3 = 0;
+int L1_4 = 0;
+int L1_5 = 0;
+int L2_0 = 0;
+int L2_1 = 0;
+int L2_2 = 0;
+int L2_3 = 0;
+int L2_4 = 0;
+int L2_5 = 0;
+int L3_0 = 0;
+int L3_1 = 0;
+int L3_2 = 0;
+int L3_3 = 0;
+int L3_4 = 0;
+int L3_5 = 0;
+int L4_0 = 0;
+int L4_1 = 0;
+int L4_2 = 0;
+int L4_3 = 0;
+int L4_4 = 0;
+int L4_5 = 0;
+int R1_0 = 0;
+int R1_1 = 0;
+int R1_2 = 0;
+int R1_3 = 0;
+int R1_4 = 0;
+int R1_5 = 0;
+int R2_0 = 0;
+int R2_1 = 0;
+int R2_2 = 0;
+int R2_3 = 0;
+int R2_4 = 0;
+int R2_5 = 0;
+int R3_0 = 0;
+int R3_1 = 0;
+int R3_2 = 0;
+int R3_3 = 0;
+int R3_4 = 0;
+int R3_5 = 0;
+int R4_0 = 0;
+int R4_1 = 0;
+int R4_2 = 0;
+int R4_3 = 0;
+int R4_4 = 0;
+int R4_5 = 0;
+int L1_P = 0;
+int L2_P = 0;
+int L3_P = 0;
+int L4_P = 0;
+int R1_P = 0;
+int R2_P = 0;
+int R3_P = 0;
+int R4_P = 0;
+int EG_PITCH_RANGE = 0;
+int EG_PITCH_RANGE_VELO = 0;
+int RATE_KEY0 = 0;
+int RATE_KEY1 = 0;
+int RATE_KEY2 = 0;
+int RATE_KEY3 = 0;
+int RATE_KEY4 = 0;
+int RATE_KEY5 = 0;
+int RATE_KEYP = 0;
+int LFO_PITCH_DEPTH = 0;
+int LFO_AMP_DEPTH = 0;
+int LFO_SPEED = 0;
+int LFO_SYNC = 0;
+int LFO_WAVE = 0;
+int LFO_FADE = 0;
+int LFO_PITCH_DEPTH_WHEEL = 0;
+int LFO_AMP_DEPTH_WHEEL = 0;
+int LFO_PITCH_DEPTH_AFTER = 0;
+int LFO_AMP_DEPTH_AFTER = 0;
+int LFO_AMS0 = 0;
+int LFO_AMS1 = 0;
+int LFO_AMS2 = 0;
+int LFO_AMS3 = 0;
+int LFO_AMS4 = 0;
+int LFO_AMS5 = 0;
+int BEND_RANGE_UP = 0;
+int BEND_RANGE_DN = 0;
+int TRANSPOSE = 0;
+int VOLUME = 0;
+int L0_0 = 0;
+int L0_1 = 0;
+int L0_2 = 0;
+int L0_3 = 0;
+int L0_4 = 0;
+int L0_5 = 0;
+int R0_0 = 0;
+int R0_1 = 0;
+int R0_2 = 0;
+int R0_3 = 0;
+int R0_4 = 0;
+int R0_5 = 0;
+int L5_0 = 0;
+int L5_1 = 0;
+int L5_2 = 0;
+int L5_3 = 0;
+int L5_4 = 0;
+int L5_5 = 0;
+int R5_0 = 0;
+int R5_1 = 0;
+int R5_2 = 0;
+int R5_3 = 0;
+int R5_4 = 0;
+int R5_5 = 0;
+int L0_P = 0;
+int R0_P = 0;
+int L5_P = 0;
+int R5_P = 0;
+int LFO_PITCH_DEPTH_BREATH = 0;
+int LFO_AMP_DEPTH_BREATH = 0;
+int LFO_PITCH_DEPTH_FOOT = 0;
+int LFO_AMP_DEPTH_FOOT = 0;
+int VOLUME_DEPTH_AFTER = 0;
+int VOLUME_DEPTH_WHEEL = 0;
+int VOLUME_DEPTH_BREATH = 0;
+int VOLUME_DEPTH_FOOT = 0;
+int PITCH_DEPTH_AFTER = 0;
+int PITCH_DEPTH_BREATH = 0;
+int PITCH_DEPTH_FOOT = 0;
+int PITCH_DEPTH_RND = 0;
+int PAN = 0;
+int LFO_PMS0 = 0;
+int LFO_PMS1 = 0;
+int LFO_PMS2 = 0;
+int LFO_PMS3 = 0;
+int LFO_PMS4 = 0;
+int LFO_PMS5 = 0;
+int LEGATO = 0;
+int PORTA_MODE = 0;
+int PORTA_TIME = 0;
+int WAVEFORM0 = 0;
+int WAVEFORM1 = 0;
+int WAVEFORM2 = 0;
+int WAVEFORM3 = 0;
+int WAVEFORM4 = 0;
+int WAVEFORM5 = 0;
+int VELO_OFFSET = 0;
+int VELO_CURVE = 0;
+int EG_LOOP = 0;
+int EG_LOOP_SEG = 0;
+int EG_RESTART = 0;
+int TUNING = 0;
+int LEVEL0_L = 0;
+int LEVEL0_R = 0;
+int LEVEL1_L = 0;
+int LEVEL1_R = 0;
+int LEVEL2_L = 0;
+int LEVEL2_R = 0;
+int LEVEL3_L = 0;
+int LEVEL3_R = 0;
+int LEVEL4_L = 0;
+int LEVEL4_R = 0;
+int LEVEL5_L = 0;
+int LEVEL5_R = 0;
+int WAVEFORM2_0 = 0;
+int WAVEFORM2_1 = 0;
+int WAVEFORM2_2 = 0;
+int WAVEFORM2_3 = 0;
+int WAVEFORM2_4 = 0;
+int WAVEFORM2_5 = 0;
+int WMODE0 = 0;
+int WMODE1 = 0;
+int WMODE2 = 0;
+int WMODE3 = 0;
+int WMODE4 = 0;
+int WMODE5 = 0;
+int WRATIO0 = 0;
+int WRATIO1 = 0;
+int WRATIO2 = 0;
+int WRATIO3 = 0;
+int WRATIO4 = 0;
+int WRATIO5 = 0;
+int OSC_PHASE0 = 0;
+int OSC_PHASE1 = 0;
+int OSC_PHASE2 = 0;
+int OSC_PHASE3 = 0;
+int OSC_PHASE4 = 0;
+int OSC_PHASE5 = 0;
+int SDLY_DRY = 0;
+int SDLY_WET = 0;
+int SDLY_MODE = 0;
+int SDLY_TIME = 0;
+int SDLY_FEEDBACK = 0;
+int SDLY_FEEDLO = 0;
+int SDLY_FEEDHI = 0;
+int SDLY_TEMPO = 0;
+int SDLY_NUM = 0;
+int SDLY_DEN = 0;
+int PHASER_DRY = 0;
+int PHASER_WET = 0;
+int PHASER_MODE = 0;
+int PHASER_DEPTH = 0;
+int PHASER_SPEED = 0;
+int PHASER_FEEDBACK = 0;
+int PHASER_OFFSET = 0;
+int PHASER_STAGES = 0;
+int PHASER_PHASE = 0;
+int PHASER_WAVEFORM = 0;
+int FILTER_LO = 0;
+int FILTER_HI = 0;
+int AM_SPEED = 0;
+int AM_RANGE = 0;
+int AM_DEPTH = 0;
+int AM_PHASE = 0;
+int FIR_IMPULSE = 0;
+int WAVESHAPER_DRY = 0;
+int WAVESHAPER_WET = 0;
+int WAVESHAPER_GAIN_PRE = 0;
+int WAVESHAPER_GAIN_POST = 0;
+int WAVESHAPER_SHAPE = 0;
+int CHORUS_DRY = 0;
+int CHORUS_WET = 0;
+int CHORUS_MODE = 0;
+int CHORUS_SPEED = 0;
+int CHORUS_DEPTH = 0;
+int CHORUS_FEEDBACK = 0;
+int CHORUS_PHASE = 0;
+int DECIMATOR_DEPTH = 0;
+int BITCRUSHER_DEPTH = 0;
+int REVERB_DRY = 0;
+int REVERB_WET = 0;
+int REVERB_MODE = 0;
+int REVERB_DECAY = 0;
+int REVERB_DAMP = 0;
+int REVERB_D0 = 0;
+int REVERB_D1 = 0;
+int REVERB_D2 = 0;
+int FX_ROUTING = 0;
+int OUTPUT_LEVEL = 0;
+int CONTROL_1H = 0;
+int CONTROL_1L = 0;
+int CONTROL_2H = 0;
+int CONTROL_2L = 0;
+int CONTROL_3H = 0;
+int CONTROL_3L = 0;
+int CONTROL_4H = 0;
+int CONTROL_4L = 0;
+int ARP_MODE = 0;
+int ARP_TEMPO = 0;
+int ARP_TEMPO_FINE = 0;
+int ARP_DIVISION = 0;
+int ARP_OCTAVES = 0;
