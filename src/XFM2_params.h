@@ -1,117 +1,104 @@
-//  This file should really contain the definitions for each parameter
-//  for each param
-//      set param(name, description, range, value)
-//      e.g. set param(PRM_ALGO0,"Algorythm 0", 0-255, 0)
-//  This will allow for recall and setting of the paramters and display within a menu system
-//      create_menu(param)
-//  Need some way of defining a nested menu structure or references to the ordering of the menu items
-
-// struct XFM_params {
-//     string name;
-//     int param_num;
-//     int param_value;
-// }
-
+// This file should really contain the definitions for each parameter
 // Define other values (globals)
 // #define MIDI_Channel_0              * 10 // 0 (omni) or 1 - 16
 // #define MIDI_Channel_1              * 11 // 0 (omni) or 1 - 16
 // #define LAYER_MODE                  * 12 // 0 Off or 1 On
-#define PRM_ALGO0                   001 // binary based on LSB
-#define PRM_ALGO1                   002 // binary based on LSB
-#define PRM_ALGO2                   003 // binary based on LSB
-#define PRM_ALGO3                   004 // binary based on LSB
-#define PRM_ALGO4                   005 // binary based on LSB
-#define PRM_ALGO5                   006 // binary based on LSB
-#define PRM_FEEDBACK0               007
-#define PRM_FEEDBACK1               008
-#define PRM_FEEDBACK2               009
-#define PRM_FEEDBACK3               010
-#define PRM_FEEDBACK4               011
-#define PRM_FEEDBACK5               012
-#define PRM_OSC_SYNC                013 // bitwise parameter to set each operator to free-run (0) or note-on (1)
-#define PRM_OSC_MODE                014 // binary based on LSB
-#define PRM_RATIO0                  015
-#define PRM_RATIO1                  016
-#define PRM_RATIO2                  017
-#define PRM_RATIO3                  018
-#define PRM_RATIO4                  019
-#define PRM_RATIO5                  020
-#define PRM_RATIO_FINE0             021
-#define PRM_RATIO_FINE1             022
-#define PRM_RATIO_FINE2             023
-#define PRM_RATIO_FINE3             024
-#define PRM_RATIO_FINE4             025
-#define PRM_RATIO_FINE5             026
-#define PRM_FINE0                   027
-#define PRM_FINE1                   028
-#define PRM_FINE2                   029
-#define PRM_FINE3                   030
-#define PRM_FINE4                   031
-#define PRM_FINE5                   032
-#define PRM_LEVEL0                  033
-#define PRM_LEVEL1                  034
-#define PRM_LEVEL2                  035
-#define PRM_LEVEL3                  036
-#define PRM_LEVEL4                  037
-#define PRM_LEVEL5                  038
-#define PRM_VEL_SENS0               039
-#define PRM_VEL_SENS1               040
-#define PRM_VEL_SENS2               041
-#define PRM_VEL_SENS3               042
-#define PRM_VEL_SENS4               043
-#define PRM_VEL_SENS5               044
-#define PRM_KEY_BP0                 045
-#define PRM_KEY_BP1                 046
-#define PRM_KEY_BP2                 047
-#define PRM_KEY_BP3                 048
-#define PRM_KEY_BP4                 049
-#define PRM_KEY_BP5                 050
-#define PRM_KEY_LDEPTH0             051
-#define PRM_KEY_LDEPTH1             052
-#define PRM_KEY_LDEPTH2             053
-#define PRM_KEY_LDEPTH3             054
-#define PRM_KEY_LDEPTH4             055
-#define PRM_KEY_LDEPTH5             056
-#define PRM_KEY_RDEPTH0             057
-#define PRM_KEY_RDEPTH1             058
-#define PRM_KEY_RDEPTH2             059
-#define PRM_KEY_RDEPTH3             060
-#define PRM_KEY_RDEPTH4             061
-#define PRM_KEY_RDEPTH5             062
-#define PRM_KEY_LCURVE0             063 // 0 - 3
-#define PRM_KEY_LCURVE1             064 // 0 - 3
-#define PRM_KEY_LCURVE2             065 // 0 - 3
-#define PRM_KEY_LCURVE3             066 // 0 - 3
-#define PRM_KEY_LCURVE4             067 // 0 - 3
-#define PRM_KEY_LCURVE5             068 // 0 - 3
-#define PRM_KEY_RCURVE0             069 // 0 - 3
-#define PRM_KEY_RCURVE1             070 // 0 - 3
-#define PRM_KEY_RCURVE2             071 // 0 - 3
-#define PRM_KEY_RCURVE3             072 // 0 - 3
-#define PRM_KEY_RCURVE4             073 // 0 - 3
-#define PRM_KEY_RCURVE5             074 // 0 - 3
-#define PRM_L1_0                    075
-#define PRM_L1_1                    076
-#define PRM_L1_2                    077
-#define PRM_L1_3                    078
-#define PRM_L1_4                    079
-#define PRM_L1_5                    080
-#define PRM_L2_0                    082
-#define PRM_L2_1                    083
-#define PRM_L2_2                    084
-#define PRM_L2_3                    085
-#define PRM_L2_4                    086
-#define PRM_L2_5                    087
-#define PRM_L3_0                    089
-#define PRM_L3_1                    090
-#define PRM_L3_2                    091
-#define PRM_L3_3                    092
-#define PRM_L3_4                    093
-#define PRM_L3_5                    094
-#define PRM_L4_0                    096
-#define PRM_L4_1                    097
-#define PRM_L4_2                    098
-#define PRM_L4_3                    099
+#define PRM_ALGO0                   1 // binary based on LSB
+#define PRM_ALGO1                   2 // binary based on LSB
+#define PRM_ALGO2                   3 // binary based on LSB
+#define PRM_ALGO3                   4 // binary based on LSB
+#define PRM_ALGO4                   5 // binary based on LSB
+#define PRM_ALGO5                   6 // binary based on LSB
+#define PRM_FEEDBACK0               7
+#define PRM_FEEDBACK1               8
+#define PRM_FEEDBACK2               9
+#define PRM_FEEDBACK3               10
+#define PRM_FEEDBACK4               11
+#define PRM_FEEDBACK5               12
+#define PRM_OSC_SYNC                13 // bitwise parameter to set each operator to free-run (0) or note-on (1)
+#define PRM_OSC_MODE                14 // binary based on LSB
+#define PRM_RATIO0                  15
+#define PRM_RATIO1                  16
+#define PRM_RATIO2                  17
+#define PRM_RATIO3                  18
+#define PRM_RATIO4                  19
+#define PRM_RATIO5                  20
+#define PRM_RATIO_FINE0             21
+#define PRM_RATIO_FINE1             22
+#define PRM_RATIO_FINE2             23
+#define PRM_RATIO_FINE3             24
+#define PRM_RATIO_FINE4             25
+#define PRM_RATIO_FINE5             26
+#define PRM_FINE0                   27
+#define PRM_FINE1                   28
+#define PRM_FINE2                   29
+#define PRM_FINE3                   30
+#define PRM_FINE4                   31
+#define PRM_FINE5                   32
+#define PRM_LEVEL0                  33
+#define PRM_LEVEL1                  34
+#define PRM_LEVEL2                  35
+#define PRM_LEVEL3                  36
+#define PRM_LEVEL4                  37
+#define PRM_LEVEL5                  38
+#define PRM_VEL_SENS0               39
+#define PRM_VEL_SENS1               40
+#define PRM_VEL_SENS2               41
+#define PRM_VEL_SENS3               42
+#define PRM_VEL_SENS4               43
+#define PRM_VEL_SENS5               44
+#define PRM_KEY_BP0                 45
+#define PRM_KEY_BP1                 46
+#define PRM_KEY_BP2                 47
+#define PRM_KEY_BP3                 48
+#define PRM_KEY_BP4                 49
+#define PRM_KEY_BP5                 50
+#define PRM_KEY_LDEPTH0             51
+#define PRM_KEY_LDEPTH1             52
+#define PRM_KEY_LDEPTH2             53
+#define PRM_KEY_LDEPTH3             54
+#define PRM_KEY_LDEPTH4             55
+#define PRM_KEY_LDEPTH5             56
+#define PRM_KEY_RDEPTH0             57
+#define PRM_KEY_RDEPTH1             58
+#define PRM_KEY_RDEPTH2             59
+#define PRM_KEY_RDEPTH3             60
+#define PRM_KEY_RDEPTH4             61
+#define PRM_KEY_RDEPTH5             62
+#define PRM_KEY_LCURVE0             63 // 0 - 3
+#define PRM_KEY_LCURVE1             64 // 0 - 3
+#define PRM_KEY_LCURVE2             65 // 0 - 3
+#define PRM_KEY_LCURVE3             66 // 0 - 3
+#define PRM_KEY_LCURVE4             67 // 0 - 3
+#define PRM_KEY_LCURVE5             68 // 0 - 3
+#define PRM_KEY_RCURVE0             69 // 0 - 3
+#define PRM_KEY_RCURVE1             70 // 0 - 3
+#define PRM_KEY_RCURVE2             71 // 0 - 3
+#define PRM_KEY_RCURVE3             72 // 0 - 3
+#define PRM_KEY_RCURVE4             73 // 0 - 3
+#define PRM_KEY_RCURVE5             74 // 0 - 3
+#define PRM_L1_0                    75
+#define PRM_L1_1                    76
+#define PRM_L1_2                    77
+#define PRM_L1_3                    78
+#define PRM_L1_4                    79
+#define PRM_L1_5                    80
+#define PRM_L2_0                    82
+#define PRM_L2_1                    83
+#define PRM_L2_2                    84
+#define PRM_L2_3                    85
+#define PRM_L2_4                    86
+#define PRM_L2_5                    87
+#define PRM_L3_0                    89
+#define PRM_L3_1                    90
+#define PRM_L3_2                    91
+#define PRM_L3_3                    92
+#define PRM_L3_4                    93
+#define PRM_L3_5                    94
+#define PRM_L4_0                    96
+#define PRM_L4_1                    97
+#define PRM_L4_2                    98
+#define PRM_L4_3                    99
 #define PRM_L4_4                    100
 #define PRM_L4_5                    101
 #define PRM_R1_0                    103

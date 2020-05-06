@@ -38,10 +38,7 @@ using namespace Menu;
   // Configure the SSD1306 with U8G2 / I2C
   U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
-// define startup XFM2 Paramters
-// int AM_DEPTH = 0;
-// int AM_SPEED = 0;
-// int AM_RANGE = 0;
+void set_parameter( int param, int value );
 
 template<int param,int& value>
 struct Param {
@@ -50,7 +47,7 @@ struct Param {
     Serial.print(param);
     Serial.print(" to ");
     Serial.println(value);
-    set_parameter(param,value);
+    ::set_parameter(param,value);
     return proceed;
   }
 };
@@ -477,17 +474,21 @@ menuNode OPMenu("Operator",sizeof(OPMenu_data)/sizeof(prompt*),OPMenu_data);
 menuNode OPSMenu("Operator Settings",sizeof(OPSMenu_data)/sizeof(prompt*),OPSMenu_data);
 menuNode OEMenu("Other Effects",sizeof(OEMenu_data)/sizeof(prompt*),OEMenu_data);
 
-menuNode mainMenu("XFM2 UI Main Menu",sizeof(mainMenu_data)/sizeof(prompt*),mainMenu_data);
-menuNode oprMenu("Operators",sizeof(oprMenu_data)/sizeof(prompt*),oprMenu_data));
-menuNode modMenu("Modulations",sizeof(modMenu_data)/sizeof(prompt*),modMenu_data));
-menuNode effMenu("Effects",sizeof(effMenu_data)/sizeof(prompt*),effMenu_data));
-menuNode progMenu("Programs",sizeof(progMenu_data)/sizeof(prompt*),progMenu_data));
+prompt* oprMenu_data[]={&OPMenu,&OPSMenu,&back};
+menuNode oprMenu("Operators",sizeof(oprMenu_data)/sizeof(prompt*),oprMenu_data);
+
+prompt* modMenu_data[]={&PLFOMenu,&AMLFOMenu,&EGMenu,&PMMenu,&back};
+menuNode modMenu("Modulations",sizeof(modMenu_data)/sizeof(prompt*),modMenu_data);
+
+prompt* effMenu_data[]={&OEMenu,&CHORUSMenu,&PHMenu,&AMMenu,&DLYMenu,&RVBMenu,&back};
+menuNode effMenu("Effects",sizeof(effMenu_data)/sizeof(prompt*),effMenu_data);
+
+prompt* progMenu_data[]={&PEGMenu,&LFOMenu,&OTHERmenu,&modMenu,&ARPMenu,&PERFMenu,&back};
+menuNode progMenu("Programs",sizeof(progMenu_data)/sizeof(prompt*),progMenu_data);
 
 prompt* mainMenu_data[]={&oprMenu,&progMenu,&modMenu,&effMenu,&back};
-prompt* oprMenu_data[]={&OPMenu,&OPSMenu,&back};
-prompt* progMenu_data[]={&PEGMenu,&LFOMenu,&OTHERmenu,&modMenu,&ARPMenu,&PERFMenu,&back};
-prompt* modMenu_data[]={&PLFOMenu,&AMLFOMenu,&EGMenu,PMMenu,&back};
-prompt* effMenu_data[]={&OEMenu,&CHORUSMenu,&PHMenu,&AMMenu,&DLYMenu,&RVBMenu,&back};
+menuNode mainMenu("XFM2 UI Main Menu",sizeof(mainMenu_data)/sizeof(prompt*),mainMenu_data);
+
 
 // define menu colors
 const colorDef<uint8_t> colors[6] MEMMODE={
@@ -506,7 +507,7 @@ encoderInStream<encA,encB> encStream(encoder,4);// simple quad encoder fake Stre
 //a keyboard with only one key as the encoder button
 keyMap encBtn_map[]={{-encBtn,defaultNavCodes[enterCmd].ch}}; //negative pin numbers use internal pull-up, this is on when low
 keyIn<1> encButton(encBtn_map);//1 is the number of keys
-menuIn* inputsList[]={&encButton};
+// menuIn* inputsList[]={&encButton};
 serialIn serial(Serial);
 
 // MENU_INPUTS(in,&serial);
