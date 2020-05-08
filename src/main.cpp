@@ -9,8 +9,8 @@
 // #define LEDPIN LED_BUILTIN
 
 // two serial port setup
-// serial - the primary serial port for the output of the menu
-// serial1 - the output for the UART comms with the XFM2
+// serial - the primary serial port for the output of the menu to the serial console of the arduino
+// serial1 - the output for the UART comms with the XFM2 @ 500kbs
 
 void setup() {
   Serial.begin(500000);

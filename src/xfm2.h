@@ -3,7 +3,7 @@
 
 //XFM2 parameter setting - From Rene's code
 
-void set_parameter( int param, int value );
+// Code for setting the unit which is active
 void set_unit( int unit );
 // Code for setting the parameter on the XFM2
 void set_parameter( int param, int value );
