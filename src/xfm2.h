@@ -11,4 +11,4 @@ void set_parameter( int param, int value );
 void get_parameter( int param, int value );
 // Code for getting all parameters on the XFM2
 void get_all_parameter();
-
+void save_program();
