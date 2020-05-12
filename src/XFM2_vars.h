@@ -3,6 +3,10 @@
 
 #include "XFM2_params.h"
 
+// Define other required values
+
+extern int ACTIVE_PROGRAM;
+
 // Define integers for all of the internal Paramters
 
 extern int ALGO0;

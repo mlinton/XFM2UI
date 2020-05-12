@@ -37,3 +37,22 @@ void get_parameter( int param, int value ) {
         Serial1.write( value );
     }
 }
+
+// Code for getting all parameters on the XFM2
+void get_all_parameter() {
+    for (int i = 0; i < 455; i++) {
+    // code for retrieving the set of paramters
+    }
+}
+
+// Code for saving programs on the XFM2
+void save_program() {
+    // code here
+   
+}
+
+// Code for loading programs on the XFM2
+void load_program() {
+    // code here
+    // set current_program to 
+}

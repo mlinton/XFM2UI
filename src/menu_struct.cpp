@@ -1,6 +1,6 @@
 #include "menu_struct.h"
 
-#define MK_FIELD(title,var,low,high) new menuField<typeof(var)>(var,title,"",1,255,1,0,Param<PRM_##var,var>::set,enterEvent)
+#define MK_FIELD(title,var,low,high) new menuField<typeof(var)>(var,title,"",0,255,1,0,Param<PRM_##var,var>::set,enterEvent)
 
 Exit back("<Back");
 
@@ -14,30 +14,30 @@ prompt* OPMenu_data[]={
 };
   // Operator 1 (0),0,255)
 prompt* OPSMenu_data[]={
-  MK_FIELD("Operator Algorythm 0",ALGO0,0,255), // bitwise setting
-  MK_FIELD("Operator Algorythm 1",ALGO1,0,255), // bitwise setting
-  MK_FIELD("Operator Algorythm 2",ALGO2,0,255), // bitwise setting
-  MK_FIELD("Operator Algorythm 3",ALGO3,0,255), // bitwise setting
-  MK_FIELD("Operator Algorythm 4",ALGO4,0,255), // bitwise setting
-  MK_FIELD("Operator Algorythm 5",ALGO5,0,255), // bitwise setting
-  MK_FIELD("Operator Self-feedback Level",FEEDBACK0,0,255),
-  MK_FIELD("Operator Self-feedback Level",FEEDBACK1,0,255),
-  MK_FIELD("Operator Self-feedback Level",FEEDBACK2,0,255),
-  MK_FIELD("Operator Self-feedback Level",FEEDBACK3,0,255),
-  MK_FIELD("Operator Self-feedback Level",FEEDBACK4,0,255),
-  MK_FIELD("Operator Self-feedback Level",FEEDBACK5,0,255),
+  MK_FIELD("Op 1 Algo",ALGO0,0,255), // bitwise setting
+  MK_FIELD("Op 2 Algo",ALGO1,0,255), // bitwise setting
+  MK_FIELD("Op 3 Algo",ALGO2,0,255), // bitwise setting
+  MK_FIELD("Op 4 Algo",ALGO3,0,255), // bitwise setting
+  MK_FIELD("Op 5 Algo",ALGO4,0,255), // bitwise setting
+  MK_FIELD("Op 6 Algo",ALGO5,0,255), // bitwise setting
+  MK_FIELD("Op 1 FB Level",FEEDBACK0,0,255),
+  MK_FIELD("Op 2 FB Level",FEEDBACK1,0,255),
+  MK_FIELD("Op 3 FB Level",FEEDBACK2,0,255),
+  MK_FIELD("Op 4 FB Level",FEEDBACK3,0,255),
+  MK_FIELD("Op 5 FB Level",FEEDBACK4,0,255),
+  MK_FIELD("Op 6 FB Level",FEEDBACK5,0,255),
   MK_FIELD("Pitch Ratio",RATIO0,0,255),
   MK_FIELD("Pitch Ratio",RATIO1,0,255),
   MK_FIELD("Pitch Ratio",RATIO2,0,255),
   MK_FIELD("Pitch Ratio",RATIO3,0,255),
   MK_FIELD("Pitch Ratio",RATIO4,0,255),
   MK_FIELD("Pitch Ratio",RATIO5,0,255),
-  MK_FIELD("Fine Pitch Ratio",RATIO_FINE0,0,255),
-  MK_FIELD("Fine Pitch Ratio",RATIO_FINE1,0,255),
-  MK_FIELD("Fine Pitch Ratio",RATIO_FINE2,0,255),
-  MK_FIELD("Fine Pitch Ratio",RATIO_FINE3,0,255),
-  MK_FIELD("Fine Pitch Ratio",RATIO_FINE4,0,255),
-  MK_FIELD("Fine Pitch Ratio",RATIO_FINE5,0,255),
+  MK_FIELD("Fine Ratio",RATIO_FINE0,0,255),
+  MK_FIELD("Fine Ratio",RATIO_FINE1,0,255),
+  MK_FIELD("Fine Ratio",RATIO_FINE2,0,255),
+  MK_FIELD("Fine Ratio",RATIO_FINE3,0,255),
+  MK_FIELD("Fine Ratio",RATIO_FINE4,0,255),
+  MK_FIELD("Fine Ratio",RATIO_FINE5,0,255),
   MK_FIELD("Operator Pitch",FINE0,0,255),
   MK_FIELD("Operator Pitch",FINE1,0,255),
   MK_FIELD("Operator Pitch",FINE2,0,255),
@@ -474,6 +474,13 @@ prompt* ARPMenu_data[]={
   &back
 };
 
+//Presets,0,255),
+prompt* PRESMenu_data[]={
+  OP("Save",save_program,enterEvent)
+  &back
+};
+
+menuNode PRESMenu("Preset Menu",sizeof(PRESMenu_data)/sizeof(prompt*),PRESMenu_data);
 menuNode AMMenu("Amplitude Modulation",sizeof(AMMenu_data)/sizeof(prompt*),AMMenu_data);
 menuNode ARPMenu("Arpeggiator",sizeof(ARPMenu_data)/sizeof(prompt*),ARPMenu_data);
 menuNode PERFMenu("Performance Settings",sizeof(PERFMenu_data)/sizeof(prompt*),PERFMenu_data);
