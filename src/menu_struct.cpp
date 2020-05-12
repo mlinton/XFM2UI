@@ -476,7 +476,8 @@ prompt* ARPMenu_data[]={
 
 //Presets,0,255),
 prompt* PRESMenu_data[]={
-  OP("Save",save_program,enterEvent)
+  OP("Save",save_program,enterEvent);
+  OP("get", set_)
   &back
 };
 
