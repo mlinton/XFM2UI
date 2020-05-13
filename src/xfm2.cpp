@@ -46,13 +46,19 @@ void get_all_parameter() {
 }
 
 // Code for saving programs on the XFM2
-void save_program() {
+void save_program( int ) {
     // code here
-   
+    Serial1.write( 'w' ); // 'w' = write active program into eeprom
+    Serial1.write( 2 ); // ACTIVE_PROGRAM
 }
 
 // Code for loading programs on the XFM2
 void load_program() {
     // code here
-    // set current_program to 
+    Serial1.write( 'r' ); // 'r' = loads a program from memory
+    Serial1.write( 2 ); // ACTIVE_PROGRAM
+    // we need to set all of the parameters to the loaded program ones
+    for (int i = 0; i < 455; i++) {
+    // code for retrieving the set of paramters
+    }
 }

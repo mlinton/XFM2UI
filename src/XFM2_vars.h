@@ -5,9 +5,13 @@
 
 // Define other required values
 
+// Thie is used to represent the active program being edited
 extern int ACTIVE_PROGRAM;
 
-// Define integers for all of the internal Paramters
+//This is used to represent the active unit being edited
+extern int ACTIVE_UNIT;
+
+// Define integers for all of the internal Parameters
 
 extern int ALGO0;
 extern int ALGO1;

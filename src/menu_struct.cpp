@@ -476,8 +476,7 @@ prompt* ARPMenu_data[]={
 
 //Presets,0,255),
 prompt* PRESMenu_data[]={
-  OP("Save",save_program,enterEvent);
-  OP("get", set_)
+  new menuValue<typeof(ACTIVE_PROGRAM)>("Save",0),
   &back
 };
 
@@ -514,5 +513,5 @@ menuNode effMenu("Effects",sizeof(effMenu_data)/sizeof(prompt*),effMenu_data);
 prompt* progMenu_data[]={&PEGMenu,&LFOMenu,&OTHERmenu,&modMenu,&ARPMenu,&PERFMenu,&back};
 menuNode progMenu("Programs",sizeof(progMenu_data)/sizeof(prompt*),progMenu_data);
 
-prompt* mainMenu_data[]={&oprMenu,&progMenu,&modMenu,&effMenu,&back};
+prompt* mainMenu_data[]={&oprMenu,&PRESMenu,&progMenu,&modMenu,&effMenu,&back};
 menuNode mainMenu("XFM2 UI Main Menu",sizeof(mainMenu_data)/sizeof(prompt*),mainMenu_data);
