@@ -8,14 +8,14 @@
 #include "XFM2_vars.h"
 #include "xfm2.h"
 
-template<int param,int& value>
+template<int param>
 struct Param {
   static result set() {
     Serial.print("updating param ");
     Serial.print(param);
     Serial.print(" to ");
-    Serial.println(value);
-    ::set_parameter(param,value);
+    Serial.println(params[param]);
+    ::set_parameter(param,params[param]);
     return proceed;
   }
 };
