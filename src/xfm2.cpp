@@ -31,6 +31,7 @@ void set_parameter( int param, int value ) {
     }
 }
 
+
 // Code for getting a selected parameter on the XFM2
 int get_parameter( int param) {
     Serial1.write( 'g' ); // 'g' = Get Parameter
@@ -57,13 +58,10 @@ void save_program( int ) {
     Serial1.write( 2 ); // ACTIVE_PROGRAM
 }
 
-// Code for loading programs on the XFM2
-void load_program() {
-    // code here
+// Code for changing programs on the XFM2
+void set_program( int program ) {
     Serial1.write( 'r' ); // 'r' = loads a program from memory
-    Serial1.write( 2 ); // ACTIVE_PROGRAM
-    // we need to set all of the parameters to the loaded program ones
-    for (int i = 0; i < n_params; i++) {
-    // code for retrieving the set of paramters
-    }
+    Serial1.write( program );
+    // we need to get all of the parameters to the loaded program ones
+    get_all_parameter();
 }

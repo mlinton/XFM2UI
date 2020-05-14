@@ -15,7 +15,6 @@ int active_unit=2;
 void setup() {
   Serial.begin(500000);
   Serial1.begin(500000);
-  // pinMode( LED_BUILTIN, OUTPUT );
   while(!Serial);
   Serial.println("XFM2UI V0.1");Serial.flush();
   encButton.begin();
@@ -23,6 +22,7 @@ void setup() {
   Wire.begin();
   u8g2.begin();
   u8g2.setFont(fontName);
+  // Pushbutton on pin 14 for changing unit
   pinMode(14,INPUT_PULLUP);
 
   get_all_parameter();

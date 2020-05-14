@@ -13,4 +13,4 @@ int get_parameter( int param);
 void get_all_parameter();
 
 void save_program();
-void load_program();
+void set_program( int program);

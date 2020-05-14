@@ -5,6 +5,7 @@
 
 // Define other required values
 extern int active_unit;
+extern int program;
 
 // Define integers for all of the internal Parameters
 constexpr int n_params=455;

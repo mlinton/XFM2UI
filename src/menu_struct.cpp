@@ -476,7 +476,8 @@ prompt* ARPMenu_data[]={
 
 //Presets,0,255),
 prompt* PRESMenu_data[]={
-  new menuValue<typeof(ACTIVE_PROGRAM)>("Save",0),
+  new FIELD(program,"Program","#",0,127,1,0,set_program(program),enterEvent,noStyle),
+  // MK_FIELD("Preset",ACTIVE_PROGRAM,0,127),
   &back
 };
 
