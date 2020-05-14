@@ -3,6 +3,7 @@
 
 // This file should really contain the definitions for each parameter
 // Define other values (globals)
+
 // #define MIDI_Channel_0              * 10 // 0 (omni) or 1 - 16
 // #define MIDI_Channel_1              * 11 // 0 (omni) or 1 - 16
 // #define LAYER_MODE                  * 12 // 0 Off or 1 On

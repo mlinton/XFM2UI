@@ -2,10 +2,17 @@
 #include "xfm2.h"
 #include "XFM2_vars.h"
 
-void set_unit( int unit ) {
+void change_unit() {
     // Default to unit 1
-    Serial1.write( unit == 2 ? '2' : '1' );
-}
+    if (ACTIVE_UNIT = 1) {
+        ACTIVE_UNIT = 2;
+    } else {
+        ACTIVE_UNIT = 1;
+    }
+    Serial1.write(ACTIVE_UNIT);
+    Serial.print("Active Unit Changed:");
+    Serial.println(ACTIVE_UNIT);
+    }
 
 // Code for setting the parameter on the XFM2
 void set_parameter( int param, int value ) {
@@ -37,15 +44,11 @@ int get_parameter( int param) {
 
 // Code for getting all parameters on the XFM2
 void get_all_parameter() {
-  // for (int i = 0; i < n_params; i++)
-  //   params[n]=get_parameter(n);
-  //or loaf th efull page (faster)
-  Serial1.write( 'd' ); // `d` = Displays all parameter values for active program.
+  Serial1.write( '2' );
   for (int i = 0; i < n_params; i++)
-    params[i]=Serial1.read();
-  while(Serial1.available()) Serial1.read();//read remaining page
-}
-
+     params[i]=get_parameter(i);
+ }
+ 
 // Code for saving programs on the XFM2
 void save_program( int ) {
     // code here

@@ -6,7 +6,6 @@
 #include <Wire.h>
 #include "base.h"
 #include "menu_def.h"
-// #define LEDPIN LED_BUILTIN
 
 // two serial port setup
 // serial - the primary serial port for the output of the menu to the serial console of the arduino
@@ -24,6 +23,9 @@ void setup() {
   u8g2.begin();
   u8g2.setFont(fontName);
 
+  get_all_parameter();
+  // Get the parameter values from the XFM2
+
   nav.idleTask=idle; //point a function to be used when menu is suspended
   Serial.println("Setup complete.");Serial.flush();
 }
@@ -37,4 +39,9 @@ void loop() {
     u8g2.firstPage();
     do nav.doOutput(); while(u8g2.nextPage());
   }
+  if (digitalRead(14) == HIGH) {
+    change_unit();
+  }
 }
+
+

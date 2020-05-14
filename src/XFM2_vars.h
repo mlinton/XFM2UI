@@ -9,7 +9,7 @@
 extern int ACTIVE_PROGRAM;
 
 //This is used to represent the active unit being edited
-extern int ACTIVE_UNIT;
+// extern int ACTIVE_UNIT;
 
 // Define integers for all of the internal Parameters
 constexpr int n_params=455;
