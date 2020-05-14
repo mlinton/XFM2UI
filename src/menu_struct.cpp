@@ -1,6 +1,6 @@
 #include "menu_struct.h"
 
-#define MK_FIELD(title,var,low,high) new menuField<typeof(var)>(var,title,"",0,255,1,0,Param<PRM_##var,var>::set,enterEvent)
+#define MK_FIELD(title,var,low,high) new menuField<typeof(var)>(var,title,"",0,255,1,0,Param<PRM_##var>::set,enterEvent)
 
 Exit back("<Back");
 
@@ -253,8 +253,8 @@ prompt* LFOMenu_data[]={
   MK_FIELD("LFO Effect Applied to Pitch",LFO_PITCH_DEPTH,0,255),
   MK_FIELD("LFO Effect Applied to Amplitude",LFO_AMP_DEPTH,0,255),
   MK_FIELD("LFO Speed",LFO_SPEED,0,255),
-  new toggle<typeof(LFO_SYNC)>("Sync: ",LFO_SYNC,sizeof(LFO_SYNC_values)/sizeof(prompt*),LFO_SYNC_values,Param<PRM_LFO_SYNC,LFO_SYNC>::set,enterEvent),
-  new toggle<typeof(LFO_WAVE)>("Waveform: ",LFO_WAVE,sizeof(LFO_WAVE_values)/sizeof(prompt*),LFO_WAVE_values,Param<PRM_LFO_WAVE,LFO_WAVE>::set,enterEvent),
+  new toggle<typeof(LFO_SYNC)>("Sync: ",LFO_SYNC,sizeof(LFO_SYNC_values)/sizeof(prompt*),LFO_SYNC_values,Param<PRM_LFO_SYNC>::set,enterEvent),
+  new toggle<typeof(LFO_WAVE)>("Waveform: ",LFO_WAVE,sizeof(LFO_WAVE_values)/sizeof(prompt*),LFO_WAVE_values,Param<PRM_LFO_WAVE>::set,enterEvent),
   MK_FIELD("Fade",LFO_FADE,0,255),
   &back
 };
@@ -315,16 +315,16 @@ prompt* OTHERMenu_data[]={
   MK_FIELD("Overall Voice Mix Volume",VOLUME,0,255),
   MK_FIELD("Voice Mix Pan",PAN,0,255),
   // MK_FIELD("Legato Mode",LEGATO,0,1), // Polyphonic or Monophonic
-  new toggle<typeof(LEGATO)>("Legato Mode: ",LEGATO,sizeof(LEGATO_values)/sizeof(prompt*),LEGATO_values,Param<PRM_LEGATO,LEGATO>::set,enterEvent),
+  new toggle<typeof(LEGATO)>("Legato Mode: ",LEGATO,sizeof(LEGATO_values)/sizeof(prompt*),LEGATO_values,Param<PRM_LEGATO>::set,enterEvent),
   // MK_FIELD("Portamento Mode",PORTA_MODE,0,3), // 0 off, 1 Always, 2 Fingered
-  new toggle<typeof(PORTA_MODE)>("Porta Mode: ",PORTA_MODE,sizeof(PORTA_MODE_values)/sizeof(prompt*),PORTA_MODE_values,Param<PRM_PORTA_MODE,PORTA_MODE>::set,enterEvent),
+  new toggle<typeof(PORTA_MODE)>("Porta Mode: ",PORTA_MODE,sizeof(PORTA_MODE_values)/sizeof(prompt*),PORTA_MODE_values,Param<PRM_PORTA_MODE>::set,enterEvent),
   MK_FIELD("Portamento Time",PORTA_TIME,0,255),
   MK_FIELD("Velocity Offset",VELO_OFFSET,0,255),
   MK_FIELD("Velocity Curve",VELO_CURVE,0,255),
   MK_FIELD("Envelope Generator Restart",EG_RESTART,0,255),
   MK_FIELD("Selected Tuning",TUNING,0,255), // list is a list from the tuning file scl
   // MK_FIELD("Overall Output Level",OUTPUT_LEVEL,0,3),  // output gain setting.  0 - none, 1 - 3db, 2 - 6db, 3 - 9db
-  new toggle<typeof(OUTPUT_LEVEL)>("Output Level: ",OUTPUT_LEVEL,sizeof(OUTPUT_LEVEL_values)/sizeof(prompt*),OUTPUT_LEVEL_values,Param<PRM_OUTPUT_LEVEL,OUTPUT_LEVEL>::set,enterEvent),
+  new toggle<typeof(OUTPUT_LEVEL)>("Output Level: ",OUTPUT_LEVEL,sizeof(OUTPUT_LEVEL_values)/sizeof(prompt*),OUTPUT_LEVEL_values,Param<PRM_OUTPUT_LEVEL>::set,enterEvent),
   &back
 };
 
@@ -338,7 +338,7 @@ prompt* DLYMenu_data[]={
   MK_FIELD("Dry Level",SDLY_DRY,0,255),
   MK_FIELD("Wet Level",SDLY_WET,0,255),
   // MK_FIELD("Mode",SDLY_MODE,0,2), // 0 - Stereo, 1 - Cross, 2 - Ping Pong
-  new toggle<typeof(SDLY_MODE)>("Mode: ",SDLY_MODE,sizeof(SDLY_MODE_values)/sizeof(prompt*),SDLY_MODE_values,Param<PRM_SDLY_MODE,SDLY_MODE>::set,enterEvent),
+  new toggle<typeof(SDLY_MODE)>("Mode: ",SDLY_MODE,sizeof(SDLY_MODE_values)/sizeof(prompt*),SDLY_MODE_values,Param<PRM_SDLY_MODE>::set,enterEvent),
   MK_FIELD("Time",SDLY_TIME,0,255), // 0 tracks with the TEMPO setting
   MK_FIELD("Feedback",SDLY_FEEDBACK,0,255),
   MK_FIELD("Low Pass Filter",SDLY_FEEDLO,0,255),
@@ -358,7 +358,7 @@ prompt* PHMenu_data[]={
   MK_FIELD("Dry Level",PHASER_DRY,0,255),
   MK_FIELD("Wet Level",PHASER_WET,0,255),
   // MK_FIELD("Mode",PHASER_MODE,0,2), // 0 - Mono, 1 - Stereo, 2 - Cross
-  new toggle<typeof(PHASER_MODE)>("Mode: ",PHASER_MODE,sizeof(PHASER_MODE_values)/sizeof(prompt*),PHASER_MODE_values,Param<PRM_PHASER_MODE,PHASER_MODE>::set,enterEvent),
+  new toggle<typeof(PHASER_MODE)>("Mode: ",PHASER_MODE,sizeof(PHASER_MODE_values)/sizeof(prompt*),PHASER_MODE_values,Param<PRM_PHASER_MODE>::set,enterEvent),
   MK_FIELD("Depth",PHASER_DEPTH,0,255),
   MK_FIELD("Speed",PHASER_SPEED,0,255),
   MK_FIELD("Feedback",PHASER_FEEDBACK,0,255),
@@ -396,7 +396,7 @@ prompt* CHORUSMenu_data[]={
   MK_FIELD("Dry Level",CHORUS_DRY,0,255),
   MK_FIELD("Wet Level",CHORUS_WET,0,255),
   //MK_FIELD("Mode",CHORUS_MODE,0,3), // 0 - Long Chorus, 1 - Short Chorus, 2 - Long Flanger, 3 - Short Flanger
-  new toggle<typeof(CHORUS_MODE)>("Mode: ",CHORUS_MODE,sizeof(CHORUS_MODE_values)/sizeof(prompt*),CHORUS_MODE_values,Param<PRM_CHORUS_MODE,CHORUS_MODE>::set,enterEvent),
+  new toggle<typeof(CHORUS_MODE)>("Mode: ",CHORUS_MODE,sizeof(CHORUS_MODE_values)/sizeof(prompt*),CHORUS_MODE_values,Param<PRM_CHORUS_MODE>::set,enterEvent),
   MK_FIELD("Speed",CHORUS_SPEED,0,255),
   MK_FIELD("Depth",CHORUS_DEPTH,0,255),
   MK_FIELD("Feedback",CHORUS_FEEDBACK,0,255),
@@ -420,7 +420,7 @@ prompt* RVBMenu_data[]={
   MK_FIELD("Dry Level",REVERB_DRY,0,255),
   MK_FIELD("Wet Level",REVERB_WET,0,255),
   // MK_FIELD("Mode",REVERB_MODE,0,1), // 0 - Plate, 1 - Hall
-  new toggle<typeof(REVERB_MODE)>("Mode: ",REVERB_MODE,sizeof(REVERB_MODE_values)/sizeof(prompt*),REVERB_MODE_values,Param<PRM_REVERB_MODE,REVERB_MODE>::set,enterEvent),
+  new toggle<typeof(REVERB_MODE)>("Mode: ",REVERB_MODE,sizeof(REVERB_MODE_values)/sizeof(prompt*),REVERB_MODE_values,Param<PRM_REVERB_MODE>::set,enterEvent),
   MK_FIELD("Decay Time",REVERB_DECAY,0,255),
   MK_FIELD("HiFreq Dampening",REVERB_DAMP,0,255),
   &back
@@ -440,7 +440,7 @@ prompt* FX_ROUTING_values[]={
 //FX Routing,0,255),
 prompt* FXRMenu_data[]={
   // MK_FIELD("Effects Routing",FX_ROUTING,0,1), // Bitcrusher → Decimator → Filter → Chorus → Phaser → AM → Delay or  1 = Bitcrusher → Decimator → Filter → Delay → Chorus → Phaser → AM
-  new toggle<typeof(FX_ROUTING)>("Mode: ",FX_ROUTING,sizeof(FX_ROUTING_values)/sizeof(prompt*),FX_ROUTING_values,Param<PRM_FX_ROUTING,FX_ROUTING>::set,enterEvent),
+  new toggle<typeof(FX_ROUTING)>("Mode: ",FX_ROUTING,sizeof(FX_ROUTING_values)/sizeof(prompt*),FX_ROUTING_values,Param<PRM_FX_ROUTING>::set,enterEvent),
   &back
 };
 //Performance Controls,0,255),
@@ -466,7 +466,7 @@ prompt* ARP_MODE_values[]={
 //Arpeggiator,0,255),
 prompt* ARPMenu_data[]={
   // MK_FIELD("Arpeggiator Mode",ARP_MODE,0,5), // 0 = off, 1 = Up, 2 = Down, 3 = Up/Down, 4 = As played, 5 = Random
-  new toggle<typeof(ARP_MODE)>("Mode: ",ARP_MODE,sizeof(ARP_MODE_values)/sizeof(prompt*),ARP_MODE_values,Param<PRM_ARP_MODE,ARP_MODE>::set,enterEvent),
+  new toggle<typeof(ARP_MODE)>("Mode: ",ARP_MODE,sizeof(ARP_MODE_values)/sizeof(prompt*),ARP_MODE_values,Param<PRM_ARP_MODE>::set,enterEvent),
   MK_FIELD("ARP Tempo",ARP_TEMPO,0,255), // 0 = MIDI Clock Tempo, 50-255 is the range
   MK_FIELD("APR Tempo (fine)",ARP_TEMPO_FINE,0,255),
   MK_FIELD("Division",ARP_DIVISION,0,255),
