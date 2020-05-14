@@ -4,14 +4,15 @@
 
 void change_unit() {
     // Default to unit 1
-    if (ACTIVE_UNIT = 1) {
-        ACTIVE_UNIT = 2;
+    if (active_unit == 1) {
+        active_unit = 2;
     } else {
-        ACTIVE_UNIT = 1;
+        active_unit = 1;
     }
-    Serial1.write(ACTIVE_UNIT);
-    Serial.print("Active Unit Changed:");
-    Serial.println(ACTIVE_UNIT);
+    Serial1.write(active_unit);
+    // Serial.print("Active Unit Changed:");
+    // Serial.println(active_unit);
+    delay(100);
     }
 
 // Code for setting the parameter on the XFM2
@@ -48,7 +49,7 @@ void get_all_parameter() {
   for (int i = 0; i < n_params; i++)
      params[i]=get_parameter(i);
  }
- 
+
 // Code for saving programs on the XFM2
 void save_program( int ) {
     // code here

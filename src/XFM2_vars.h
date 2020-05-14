@@ -4,12 +4,7 @@
 #include "XFM2_params.h"
 
 // Define other required values
-
-// Thie is used to represent the active program being edited
-extern int ACTIVE_PROGRAM;
-
-//This is used to represent the active unit being edited
-// extern int ACTIVE_UNIT;
+extern int active_unit;
 
 // Define integers for all of the internal Parameters
 constexpr int n_params=455;

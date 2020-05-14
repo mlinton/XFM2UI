@@ -10,6 +10,7 @@
 // two serial port setup
 // serial - the primary serial port for the output of the menu to the serial console of the arduino
 // serial1 - the output for the UART comms with the XFM2 @ 500kbs
+int active_unit=2;
 
 void setup() {
   Serial.begin(500000);
@@ -22,6 +23,7 @@ void setup() {
   Wire.begin();
   u8g2.begin();
   u8g2.setFont(fontName);
+  pinMode(14,INPUT_PULLUP);
 
   get_all_parameter();
   // Get the parameter values from the XFM2
@@ -39,7 +41,7 @@ void loop() {
     u8g2.firstPage();
     do nav.doOutput(); while(u8g2.nextPage());
   }
-  if (digitalRead(14) == HIGH) {
+  if (digitalRead(14) == LOW) {
     change_unit();
   }
 }

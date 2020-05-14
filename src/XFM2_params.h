@@ -3,6 +3,9 @@
 
 // This file should really contain the definitions for each parameter
 // Define other values (globals)
+// Thie is used to represent the active program being edited
+extern int ACTIVE_PROGRAM;
+
 
 // #define MIDI_Channel_0              * 10 // 0 (omni) or 1 - 16
 // #define MIDI_Channel_1              * 11 // 0 (omni) or 1 - 16
