@@ -16,6 +16,8 @@
 
 using namespace Menu;
 
+constexpr int menu_fps=5;//limit menu draw FPS
+
 // rotary encoder pins
 #define encA    3
 #define encB    4

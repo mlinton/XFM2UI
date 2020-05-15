@@ -1,3 +1,5 @@
 #include "XFM2_vars.h"
 
-int params[n_params]={0};
+ParamType params[n_params]={0};
+ParamType unit1_params[n_params]={0};
+ParamType unit2_params[n_params]={0};
