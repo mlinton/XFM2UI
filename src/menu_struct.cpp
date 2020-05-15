@@ -1,4 +1,5 @@
 #include "menu_struct.h"
+#include "menu_funcs.h"
 
 #define MK_FIELD(title,var,low,high) new menuField<typeof(var)>(var,title,"",0,255,1,0,Param<PRM_##var>::set,enterEvent)
 
@@ -476,7 +477,8 @@ prompt* ARPMenu_data[]={
 
 //Presets,0,255),
 prompt* PRESMenu_data[]={
-  new FIELD(program,"Program","#",0,127,1,0,set_program(program),enterEvent,noStyle),
+  // new FIELD(program,"Program","#",0,127,1,0,set_program(program),enterEvent,noStyle),
+  new menuField<decltype(program)>(program,"Program","#",0,127,1,0,set_program,enterEvent,noStyle),
   // MK_FIELD("Preset",ACTIVE_PROGRAM,0,127),
   &back
 };

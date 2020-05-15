@@ -2,12 +2,26 @@
 #include "xfm2.h"
 #include "XFM2_vars.h"
 
+int program=0;
+
 void change_unit() {
     // Default to unit 1
     if (active_unit == 1) {
         active_unit = 2;
+        //swap unit params
+        //or do 2 memcpy's
+        for(int i=0;i<n_params;i++) {
+          unit1_params[i]=params[i];
+          params[i]=unit2_params[i];
+        }
     } else {
         active_unit = 1;
+        //swap unit params
+        //or do 2 memcpy's
+        for(int i=0;i<n_params;i++) {
+          unit2_params[i]=params[i];
+          params[i]=unit1_params[i];
+        }
     }
     Serial1.write(active_unit);
     // Serial.print("Active Unit Changed:");
@@ -50,18 +64,3 @@ void get_all_parameter() {
   for (int i = 0; i < n_params; i++)
      params[i]=get_parameter(i);
  }
-
-// Code for saving programs on the XFM2
-void save_program( int ) {
-    // code here
-    Serial1.write( 'w' ); // 'w' = write active program into eeprom
-    Serial1.write( 2 ); // ACTIVE_PROGRAM
-}
-
-// Code for changing programs on the XFM2
-void set_program( int program ) {
-    Serial1.write( 'r' ); // 'r' = loads a program from memory
-    Serial1.write( program );
-    // we need to get all of the parameters to the loaded program ones
-    get_all_parameter();
-}

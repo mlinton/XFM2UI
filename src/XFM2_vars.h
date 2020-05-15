@@ -7,10 +7,13 @@
 extern int active_unit;
 extern int program;
 
-// Define integers for all of the internal Parameters
-constexpr int n_params=455;
-extern int params[n_params];
+using ParamType=int;//unsigned char;//allows us to change the array values **type**
+constexpr int n_params=455;//number of local stored params
+extern ParamType params[n_params];
+extern ParamType unit1_params[n_params];
+extern ParamType unit2_params[n_params];
 
+// Define integers for all of the internal Parameters
 #define ALGO0 params[PRM_ALGO0]
 #define ALGO1 params[PRM_ALGO1]
 #define ALGO2 params[PRM_ALGO2]

@@ -9,3 +9,5 @@
 
 //init base hardware (SSD1306 OLED display in this case)
 extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2;
+
+constexpr int unitPin=14;//change unit pin
