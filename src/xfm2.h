@@ -1,7 +1,6 @@
 /* -*- C++ -*- */
 #pragma once
 
-
 //selected program (menu will change this var)
 extern int program;
 
