@@ -8,8 +8,20 @@ void change_unit() {
     // Default to unit 1
     if (active_unit == 1) {
         active_unit = 2;
+        //swap unit params
+        //or do 2 memcpy's
+        for(int i=0;i<n_params;i++) {
+          unit1_params[i]=params[i];
+          params[i]=unit2_params[i];
+        }
     } else {
         active_unit = 1;
+        //swap unit params
+        //or do 2 memcpy's
+        for(int i=0;i<n_params;i++) {
+          unit2_params[i]=params[i];
+          params[i]=unit1_params[i];
+        }
     }
     Serial1.write(active_unit);
     // Serial.print("Active Unit Changed:");

@@ -28,8 +28,15 @@ void setup() {
   // Pushbutton on pin 14 for changing unit
   pinMode(unitPin,INPUT_PULLUP);
 
-  get_all_parameter();
   // Get the parameter values from the XFM2
+  // get bith unit paramns and store them, start with unit 1 then
+  //keep th eorder so that params[..] will be the same as unit1_params[..]
+  Serial1.write('2');//select unit 2
+  get_all_parameter();
+  for(int i=0;i<n_params;i++) unit2_params[i]=params[i];
+  Serial1.write('1');//select unit 1
+  get_all_parameter();
+  for(int i=0;i<n_params;i++) unit1_params[i]=params[i];
 
   nav.idleTask=idle; //point a function to be used when menu is suspended
   Serial.println("Setup complete.");Serial.flush();
