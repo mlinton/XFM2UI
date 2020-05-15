@@ -7,7 +7,7 @@
 extern int active_unit;
 extern int program;
 
-using ParamType=unsigned char;//allows us to change the array values **type**
+using ParamType=int;//unsigned char;//allows us to change the array values **type**
 constexpr int n_params=455;//number of local stored params
 extern ParamType params[n_params];
 extern ParamType unit1_params[n_params];
