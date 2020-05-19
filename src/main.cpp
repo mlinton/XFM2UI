@@ -16,7 +16,12 @@ using namespace TinyTimeUtils;//for limiting FPS without blocking
 int active_unit=2;
 
 void setup() {
-  Serial.begin(500000);
+  #ifdef ARDUINO_LOLIN32
+    Serial.begin(115200);//just because i dont have 500000 on platformio monitor
+    delay(2000);//so that i can see the boot messages
+  #else
+    Serial.begin(500000);
+  #endif
   Serial1.begin(500000);
   while(!Serial);
   Serial.println("XFM2UI V0.1");Serial.flush();
@@ -25,18 +30,21 @@ void setup() {
   Wire.begin();
   u8g2.begin();
   u8g2.setFont(fontName);
-  // Pushbutton on pin 14 for changing unit
+  // // Pushbutton on pin 14 for changing unit
   pinMode(unitPin,INPUT_PULLUP);
 
-  // Get the parameter values from the XFM2
-  // get bith unit paramns and store them, start with unit 1 then
-  //keep th eorder so that params[..] will be the same as unit1_params[..]
-  Serial1.write('2');//select unit 2
-  get_all_parameter();
-  for(int i=0;i<n_params;i++) unit2_params[i]=params[i];
-  Serial1.write('1');//select unit 1
-  get_all_parameter();
-  for(int i=0;i<n_params;i++) unit1_params[i]=params[i];
+  // // Get the parameter values from the XFM2
+  // // get bith unit paramns and store them, start with unit 1 then
+  // //keep th eorder so that params[..] will be the same as unit1_params[..]
+
+  #ifndef ARDUINO_LOLIN32
+    Serial1.write('2');//select unit 2
+    get_all_parameter();
+    for(int i=0;i<n_params;i++) unit2_params[i]=params[i];
+    Serial1.write('1');//select unit 1
+    get_all_parameter();
+    for(int i=0;i<n_params;i++) unit1_params[i]=params[i];
+  #endif
 
   nav.idleTask=idle; //point a function to be used when menu is suspended
   Serial.println("Setup complete.");Serial.flush();
