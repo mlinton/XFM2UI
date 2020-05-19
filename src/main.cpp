@@ -20,8 +20,6 @@ void setup() {
   Serial1.begin(500000);
   while(!Serial);
   Serial.println("XFM2UI V0.1");Serial.flush();
-  encButton.begin();
-  encoder.begin();
   Wire.begin();
   u8g2.begin();
   u8g2.setFont(fontName);
@@ -40,6 +38,10 @@ void setup() {
 
   nav.idleTask=idle; //point a function to be used when menu is suspended
   Serial.println("Setup complete.");Serial.flush();
+  
+  //Timer for the ClickEncoder
+  Timer1.initialize(1000);
+  Timer1.attachInterrupt(timerIsr);
 }
 
 
