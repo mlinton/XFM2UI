@@ -295,12 +295,14 @@ prompt* PLFOMenu_data[]={
 
 prompt* LEGATO_values[]={
   new menuValue<typeof(LEGATO)>("Polyphonic",0),
-  new menuValue<typeof(LEGATO)>("Monophonic",1)
+  new menuValue<typeof(LEGATO)>("Monophonic",1),
+  new menuValue<typeof(LEGATO)>("N/A",255)
 };
 prompt* PORTA_MODE_values[]={
   new menuValue<typeof(PORTA_MODE)>("Off",0),
   new menuValue<typeof(PORTA_MODE)>("Always",1),
-  new menuValue<typeof(PORTA_MODE)>("Fingered",2)
+  new menuValue<typeof(PORTA_MODE)>("Fingered",2),
+  new menuValue<typeof(PORTA_MODE)>("N/A",255)
 };
 prompt* OUTPUT_LEVEL_values[]={
   new menuValue<typeof(OUTPUT_LEVEL)>("Default",0),

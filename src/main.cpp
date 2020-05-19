@@ -42,6 +42,9 @@ void setup() {
   //Timer for the ClickEncoder
   Timer1.initialize(1000);
   Timer1.attachInterrupt(timerIsr);
+  Serial.print(LEGATO);
+  Serial.print(OUTPUT_LEVEL);
+  Serial.print(PORTA_MODE);
 }
 
 
