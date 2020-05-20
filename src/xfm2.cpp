@@ -45,7 +45,6 @@ void set_parameter( int param, int value ) {
     }
 }
 
-
 // Code for getting a selected parameter on the XFM2
 int get_parameter( int param) {
     Serial1.write( 'g' ); // 'g' = Get Parameter

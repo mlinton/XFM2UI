@@ -52,6 +52,13 @@ void setup() {
 
   nav.idleTask=idle; //point a function to be used when menu is suspended
   Serial.println("Setup complete.");Serial.flush();
+
+  //Timer for the ClickEncoder
+  Timer1.initialize(1000);
+  Timer1.attachInterrupt(timerIsr);
+  Serial.print(LEGATO);
+  Serial.print(OUTPUT_LEVEL);
+  Serial.print(PORTA_MODE);
 }
 
 

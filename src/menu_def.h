@@ -5,8 +5,9 @@
 //https://github.com/neu-rah/ArduinoMenu
 
 #include <menuIO/u8g2Out.h>
-#include <menuIO/encoderIn.h>
-// #include "ClickEncoder.h"
+// #include <menuIO/encoderIn.h>
+#include <TimerOne.h>
+#include "ClickEncoder.h"
 #include <menuIO/clickEncoderIn.h>
 #include <menuIO/keyIn.h>
 #include <menuIO/chainStream.h>
@@ -16,7 +17,7 @@
 
 using namespace Menu;
 
-constexpr int menu_fps=5;//limit menu draw FPS
+constexpr int menu_fps=20;//limit menu draw FPS
 
 // rotary encoder pins
 #define encA    3
@@ -47,17 +48,14 @@ const colorDef<uint8_t> colors[6] MEMMODE={
 };
 
 // Menu input encoder
-encoderIn<encA,encB> encoder;//simple quad encoder driver
-encoderInStream<encA,encB> encStream(encoder,4);// simple quad encoder fake Stream
+ClickEncoder clickEncoder(encA,encB,encBtn,4);
+ClickEncoderStream encStream(clickEncoder,1);
+void timerIsr() {clickEncoder.service();}
 
-//a keyboard with only one key as the encoder button
-keyMap encBtn_map[]={{-encBtn,defaultNavCodes[enterCmd].ch}}; //negative pin numbers use internal pull-up, this is on when low
-keyIn<1> encButton(encBtn_map);//1 is the number of keys
-// menuIn* inputsList[]={&encButton};
 serialIn serial(Serial);
 
 // MENU_INPUTS(in,&serial);
-MENU_INPUTS(in,&encStream,&encButton,&serial);
+MENU_INPUTS(in,&encStream,&serial);
 
 MENU_OUTPUTS(out,MAX_DEPTH
   ,U8G2_OUT(u8g2,colors,fontX,fontY,offsetX,offsetY,{0,0,U8_Width/fontX,U8_Height/fontY})
