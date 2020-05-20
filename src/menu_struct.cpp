@@ -479,9 +479,7 @@ prompt* ARPMenu_data[]={
 
 //Presets,0,255),
 prompt* PRESMenu_data[]={
-  // new FIELD(program,"Program","#",0,127,1,0,set_program(program),enterEvent,noStyle),
-  new menuField<decltype(program)>(program,"Program","#",0,127,1,0,set_program,enterEvent,noStyle),
-  // MK_FIELD("Preset",ACTIVE_PROGRAM,0,127),
+  // new menuField<decltype(program)>(program,"Program","#",0,127,1,0,get_program,enterEvent,noStyle),
   &back
 };
 

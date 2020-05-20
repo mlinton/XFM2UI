@@ -13,3 +13,6 @@ void set_parameter( int param, int value );
 int get_parameter( int param);
 // Code for getting all parameters on the XFM2
 void get_all_parameter();
+// Code for reading(loading) a program from XFM2 into the active program
+void get_program( int program);
+
