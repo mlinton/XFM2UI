@@ -25,9 +25,10 @@ constexpr int menu_fps=20;//limit menu draw FPS
 
 // Menu input encoder
 #ifdef ARDUINO_LOLIN32
-  void timerIsr();
   void IRAM_ATTR onTimer();
   extern hw_timer_t *timer;
+#else
+  void timerIsr();
 #endif
 extern ClickEncoder clickEncoder;
 
