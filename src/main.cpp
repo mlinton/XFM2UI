@@ -25,8 +25,6 @@ void setup() {
   Serial1.begin(500000);
   while(!Serial);
   Serial.println("XFM2UI V0.1");Serial.flush();
-  encButton.begin();
-  encoder.begin();
   #ifdef ARDUINO_LOLIN32
     Wire.begin(SDA,SCL);
   #else
@@ -53,14 +51,20 @@ void setup() {
   nav.idleTask=idle; //point a function to be used when menu is suspended
   Serial.println("Setup complete.");Serial.flush();
 
-  //Timer for the ClickEncoder
-  Timer1.initialize(1000);
-  Timer1.attachInterrupt(timerIsr);
-  Serial.print(LEGATO);
-  Serial.print(OUTPUT_LEVEL);
-  Serial.print(PORTA_MODE);
+  #ifdef ARDUINO_LOLIN32
+    timer = timerBegin(0, 80, true);
+    timerAttachInterrupt(timer, &onTimer, true);
+    timerAlarmWrite(timer, 1000, true);
+    timerAlarmEnable(timer);
+  #else
+    //Timer for the ClickEncoder
+    Timer1.initialize(1000);
+    Timer1.attachInterrupt(timerIsr);
+    Serial.print(LEGATO);
+    Serial.print(OUTPUT_LEVEL);
+    Serial.print(PORTA_MODE);
+  #endif
 }
-
 
 void loop() {
   static FPS<menu_fps> menuFps;//limit menu drawing fps (change as needed)
