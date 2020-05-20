@@ -27,7 +27,11 @@ void setup() {
   Serial.println("XFM2UI V0.1");Serial.flush();
   encButton.begin();
   encoder.begin();
-  Wire.begin();
+  #ifdef ARDUINO_LOLIN32
+    Wire.begin(SDA,SCL);
+  #else
+    Wire.begin();
+  #endif
   u8g2.begin();
   u8g2.setFont(fontName);
   // // Pushbutton on pin 14 for changing unit
