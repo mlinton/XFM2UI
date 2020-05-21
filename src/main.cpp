@@ -37,7 +37,7 @@ void setup() {
 
   // // Get the parameter values from the XFM2
   // // get bith unit paramns and store them, start with unit 1 then
-  // //keep th eorder so that params[..] will be the same as unit1_params[..]
+  // // keep the order so that params[..] will be the same as unit1_params[..]
 
   #ifndef ARDUINO_LOLIN32
     Serial1.write('2');//select unit 2
@@ -60,9 +60,8 @@ void setup() {
     //Timer for the ClickEncoder
     Timer1.initialize(1000);
     Timer1.attachInterrupt(timerIsr);
-    Serial.print(LEGATO);
-    Serial.print(OUTPUT_LEVEL);
-    Serial.print(PORTA_MODE);
+    // enable acceleration for encoder here?
+
   #endif
 }
 

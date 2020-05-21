@@ -239,7 +239,8 @@ prompt* LFO_SYNC_values[]={
   new menuValue<typeof(LFO_SYNC)>("Single free",0),
   new menuValue<typeof(LFO_SYNC)>("Single key",1),
   new menuValue<typeof(LFO_SYNC)>("Multi free",2),
-  new menuValue<typeof(LFO_SYNC)>("Multi key",3)
+  new menuValue<typeof(LFO_SYNC)>("Multi key",3),
+  new menuValue<typeof(LFO_SYNC)>("N/A",100)
 };
 prompt* LFO_WAVE_values[]={
   new menuValue<typeof(LFO_WAVE)>("Triangle",0),
@@ -247,7 +248,8 @@ prompt* LFO_WAVE_values[]={
   new menuValue<typeof(LFO_WAVE)>("Saw Up",2),
   new menuValue<typeof(LFO_WAVE)>("Saw Down",3),
   new menuValue<typeof(LFO_WAVE)>("Sine",4),
-  new menuValue<typeof(LFO_WAVE)>("Random",5)
+  new menuValue<typeof(LFO_WAVE)>("Random",5),
+  new menuValue<typeof(LFO_WAVE)>("N/A",100)
 };
   //LFO Menu,0,255),
 prompt* LFOMenu_data[]={
@@ -304,11 +306,11 @@ prompt* PORTA_MODE_values[]={
   new menuValue<typeof(PORTA_MODE)>("Fingered",2),
   new menuValue<typeof(PORTA_MODE)>("N/A",255)
 };
-prompt* OUTPUT_LEVEL_values[]={
-  new menuValue<typeof(OUTPUT_LEVEL)>("Default",0),
-  new menuValue<typeof(OUTPUT_LEVEL)>("+3db",1),
-  new menuValue<typeof(OUTPUT_LEVEL)>("+6db",2),
-  new menuValue<typeof(OUTPUT_LEVEL)>("+9db",3)
+prompt* GAIN_LEVEL_values[]={
+  new menuValue<typeof(GAIN_LEVEL)>("Default",0),
+  new menuValue<typeof(GAIN_LEVEL)>("+3db",1),
+  new menuValue<typeof(GAIN_LEVEL)>("+6db",2),
+  new menuValue<typeof(GAIN_LEVEL)>("+9db",3)
 };
 
 prompt* OTHERMenu_data[]={
@@ -326,8 +328,9 @@ prompt* OTHERMenu_data[]={
   MK_FIELD("Velocity Curve",VELO_CURVE,0,255),
   MK_FIELD("Envelope Generator Restart",EG_RESTART,0,255),
   MK_FIELD("Selected Tuning",TUNING,0,255), // list is a list from the tuning file scl
+  MK_FIELD("Output Lvl",OUTPUT_LEVEL,0,255),
   // MK_FIELD("Overall Output Level",OUTPUT_LEVEL,0,3),  // output gain setting.  0 - none, 1 - 3db, 2 - 6db, 3 - 9db
-  new toggle<typeof(OUTPUT_LEVEL)>("Output Level: ",OUTPUT_LEVEL,sizeof(OUTPUT_LEVEL_values)/sizeof(prompt*),OUTPUT_LEVEL_values,Param<PRM_OUTPUT_LEVEL>::set,enterEvent),
+  new toggle<typeof(GAIN_LEVEL)>("Gain Lvl: ",GAIN_LEVEL,sizeof(GAIN_LEVEL_values)/sizeof(prompt*),GAIN_LEVEL_values,Param<PRM_GAIN_LEVEL>::set,enterEvent),
   &back
 };
 
@@ -448,14 +451,14 @@ prompt* FXRMenu_data[]={
 };
 //Performance Controls,0,255),
 prompt* PERFMenu_data[]={
-  MK_FIELD("Set Performance Control 70",CONTROL_1H,0,255), // These are strange
-  MK_FIELD("Set Performance Control 70",CONTROL_1L,0,255),
-  MK_FIELD("Set Performance Control 71",CONTROL_2H,0,255),
-  MK_FIELD("Set Performance Control 71",CONTROL_2L,0,255),
-  MK_FIELD("Set Performance Control 72",CONTROL_3H,0,255),
-  MK_FIELD("Set Performance Control 72",CONTROL_3L,0,255),
-  MK_FIELD("Set Performance Control 73",CONTROL_4H,0,255),
-  MK_FIELD("Set Performance Control 73",CONTROL_4L,0,255),
+  MK_FIELD("Set CC 70",CONTROL_1H,0,255), // These are strange
+  MK_FIELD("Set CC 70",CONTROL_1L,0,255),
+  MK_FIELD("Set CC 71",CONTROL_2H,0,255),
+  MK_FIELD("Set CC 71",CONTROL_2L,0,255),
+  MK_FIELD("Set CC 72",CONTROL_3H,0,255),
+  MK_FIELD("Set CC 72",CONTROL_3L,0,255),
+  MK_FIELD("Set CC 73",CONTROL_4H,0,255),
+  MK_FIELD("Set CC 73",CONTROL_4L,0,255),
   &back
 };
 prompt* ARP_MODE_values[]={
@@ -517,4 +520,4 @@ prompt* progMenu_data[]={&PEGMenu,&LFOMenu,&OTHERmenu,&modMenu,&ARPMenu,&PERFMen
 menuNode progMenu("Programs",sizeof(progMenu_data)/sizeof(prompt*),progMenu_data);
 
 prompt* mainMenu_data[]={&oprMenu,&PRESMenu,&progMenu,&modMenu,&effMenu,&back};
-menuNode mainMenu("XFM2 UI Main Menu",sizeof(mainMenu_data)/sizeof(prompt*),mainMenu_data);
+menuNode mainMenu("XFM2UI",sizeof(mainMenu_data)/sizeof(prompt*),mainMenu_data);

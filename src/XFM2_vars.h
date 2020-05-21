@@ -322,6 +322,7 @@ extern ParamType unit2_params[n_params];
 #define REVERB_D2 params[PRM_REVERB_D2]
 #define FX_ROUTING params[PRM_FX_ROUTING]
 #define OUTPUT_LEVEL params[PRM_OUTPUT_LEVEL]
+#define GAIN_LEVEL params[PRM_GAIN_LEVEL]
 #define CONTROL_1H params[PRM_CONTROL_1H]
 #define CONTROL_1L params[PRM_CONTROL_1L]
 #define CONTROL_2H params[PRM_CONTROL_2H]

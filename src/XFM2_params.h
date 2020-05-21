@@ -315,6 +315,7 @@ constexpr int PRM_REVERB_D1=              396;
 constexpr int PRM_REVERB_D2=              397;
 constexpr int PRM_FX_ROUTING=             410; // 0 or 1
 constexpr int PRM_OUTPUT_LEVEL=           411;
+constexpr int PRM_GAIN_LEVEL=             412; // 0, 1 , 2, 3
 constexpr int PRM_CONTROL_1H=             420;
 constexpr int PRM_CONTROL_1L=             421;
 constexpr int PRM_CONTROL_2H=             422;

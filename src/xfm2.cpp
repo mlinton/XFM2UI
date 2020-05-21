@@ -26,7 +26,7 @@ void change_unit() {
     Serial1.write(active_unit);
     // Serial.print("Active Unit Changed:");
     // Serial.println(active_unit);
-    delay(100);
+    delay(30);
     }
 
 // Code for setting the parameter on the XFM2

@@ -36,6 +36,7 @@ const colorDef<uint8_t> colors[6] MEMMODE={
 
 ClickEncoder clickEncoder(encA,encB,encBtn,4);
 ClickEncoderStream encStream(clickEncoder,1);
+// clickEncoder.setAccelerationEnabled(true);
 
 serialIn serial(Serial);
 

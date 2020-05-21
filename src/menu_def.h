@@ -21,7 +21,7 @@ using namespace Menu;
 //#define fontName u8g2_font_7x13_mf
 #define fontName u8g2_font_6x10_mf
 #define MAX_DEPTH 4
-constexpr int menu_fps=20;//limit menu draw FPS
+constexpr int menu_fps=120;//limit menu draw FPS
 
 // Menu input encoder
 #ifdef ARDUINO_LOLIN32
