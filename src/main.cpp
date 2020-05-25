@@ -7,7 +7,7 @@
 #include "base.h"
 #include "menu_def.h"
 #include "tinyTimeUtils.h" //from https://github.com/neu-rah/tinyTimeUtils/blob/master/src/tinyTimeUtils.h
-
+#include <ArduinoJson.h>
 using namespace TinyTimeUtils;//for limiting FPS without blocking
 
 // two serial port setup
@@ -39,6 +39,7 @@ void setup() {
   // // get bith unit paramns and store them, start with unit 1 then
   // // keep the order so that params[..] will be the same as unit1_params[..]
 
+
   #ifndef ARDUINO_LOLIN32
     Serial1.write('2');//select unit 2
     get_all_parameter();
@@ -61,9 +62,13 @@ void setup() {
     Timer1.initialize(1000);
     Timer1.attachInterrupt(timerIsr);
     // enable acceleration for encoder here?
-
   #endif
+// setup for the json parser for presets
+StaticJsonDocument<20000> jsonBuffer;
+
 }
+
+
 
 void loop() {
   static FPS<menu_fps> menuFps;//limit menu drawing fps (change as needed)

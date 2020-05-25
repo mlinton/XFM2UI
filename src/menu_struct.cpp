@@ -249,7 +249,7 @@ prompt* LFO_WAVE_values[]={
   new menuValue<typeof(LFO_WAVE)>("Saw Down",3),
   new menuValue<typeof(LFO_WAVE)>("Sine",4),
   new menuValue<typeof(LFO_WAVE)>("Random",5),
-  new menuValue<typeof(LFO_WAVE)>("N/A",100)
+  new menuValue<typeof(LFO_WAVE)>("N/A",100) // not sure why the default setting for this is 100
 };
   //LFO Menu,0,255),
 prompt* LFOMenu_data[]={
